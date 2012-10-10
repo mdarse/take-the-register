@@ -30,6 +30,7 @@ security:
                 remember_me: true
             logout: true
             anonymous: false
+            switch_user: true
 
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
