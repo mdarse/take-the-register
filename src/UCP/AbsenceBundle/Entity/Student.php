@@ -1,11 +1,11 @@
 <?php
 
-namespace UCP\AbsenceManagementBundle\Entity;
+namespace UCP\AbsenceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="UCP\AbsenceManagementBundle\Entity\StudentRepository")
+ * @ORM\Entity(repositoryClass="UCP\AbsenceBundle\Entity\StudentRepository")
  */
 class Student
 {
@@ -17,27 +17,27 @@ class Student
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string")
      */
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string")
      */
     private $lastname;
 
     /**
-     * @ORM\Column(type="string", length=11)
+     * @ORM\Column(type="string", length=11, nullable=true)
      */
     private $ine;
 
     /**
-     * @ORM\Column(type="string", length=254)
+     * @ORM\Column(type="string", length=254, nullable=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="string", length=15, nullable=true)
      */
     private $phone;
 

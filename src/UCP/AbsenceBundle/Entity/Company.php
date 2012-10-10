@@ -1,6 +1,6 @@
 <?php
 
-namespace UCP\AbsenceManagementBundle\Entity;
+namespace UCP\AbsenceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

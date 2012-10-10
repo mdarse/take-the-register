@@ -20,7 +20,7 @@ class AppKernel extends Kernel
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new UCP\AbsenceManagementBundle\UCPAbsenceManagementBundle(),
+            new UCP\AbsenceBundle\UCPAbsenceBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

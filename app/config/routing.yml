@@ -23,6 +23,6 @@ fos_user_change_password:
     prefix: /profile
 
 ucp_absence_management:
-    resource: "@UCPAbsenceManagementBundle/Controller/"
+    resource: "@UCPAbsenceBundle/Controller/"
     type:     annotation
     prefix:   /
