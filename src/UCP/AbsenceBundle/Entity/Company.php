@@ -22,40 +22,40 @@ class Company
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=80)
+     * @ORM\Column(type="string", length=80, nullable=true)
      */
-    private $tutor;
+    private $tutorName;
 
     /**
-     * @ORM\Column(type="string", length=254)
+     * @ORM\Column(type="string", length=254, nullable=true)
      */
-    private $email;
+    private $tutorEmail;
 
     /**
      * @var string $phone
      *
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="string", length=15, nullable=true)
      */
     private $phone;
 
     /**
      * @var string $address
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $address;
 
     /**
      * @var string $city
      *
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=45, nullable=true)
      */
     private $city;
 
     /**
      * @var string $postalCode
      *
-     * @ORM\Column(type="string", length=5)
+     * @ORM\Column(type="string", length=5, nullable=true)
      */
     private $postalCode;
 }
