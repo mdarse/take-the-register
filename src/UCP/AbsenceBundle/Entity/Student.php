@@ -45,4 +45,9 @@ class Student
      * @ORM\Column(type="string", nullable=true)
      */
     private $picturePath;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Company")
+     */
+    private $company;
 }

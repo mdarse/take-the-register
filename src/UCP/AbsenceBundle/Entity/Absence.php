@@ -10,6 +10,18 @@ use Doctrine\ORM\Mapping as ORM;
 class Absence
 {
     /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Student")
+     */
+    private $student;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Lesson")
+     */
+    private $lesson;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     private $justified;

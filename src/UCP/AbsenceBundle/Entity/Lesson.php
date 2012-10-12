@@ -17,6 +17,11 @@ class Lesson
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity=User, nullable=true)
+     */
+    private $professor;
+
+    /**
      * @ORM\Column(type="string")
      */
     private $label;
