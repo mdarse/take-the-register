@@ -17,7 +17,7 @@ class Lesson
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User, nullable=true)
+     * @ORM\ManyToOne(targetEntity="User")
      */
     private $professor;
 
