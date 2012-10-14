@@ -1,0 +1,10 @@
+{% extends 'UCPAbsenceBundle::layout.html.twig' %}
+
+{% block body %}
+<h1>Dashboard</h1>
+
+<a href="">Take the register</a> |
+<a href="{{ path('student') }}">Manage students</a> |
+<a href="">Edit my profile</a> |
+<a href="{{ path('sync_index') }}">Configure calendar sync</a>
+{% endblock %}
