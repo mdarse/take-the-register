@@ -5,7 +5,7 @@ namespace UCP\AbsenceBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="UCP\AbsenceBundle\Repository\AbsenceRepository")
  */
 class Absence
 {
