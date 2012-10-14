@@ -20,7 +20,8 @@
         "jms/di-extra-bundle": "1.1.*",
         "friendsofsymfony/user-bundle": "*",
         "sonata-project/admin-bundle": "2.1.x-dev",
-        "sonata-project/doctrine-orm-admin-bundle": "*"
+        "sonata-project/doctrine-orm-admin-bundle": "*",
+        "ddeboer/guzzle-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
