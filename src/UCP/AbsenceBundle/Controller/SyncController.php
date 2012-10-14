@@ -52,6 +52,57 @@ class SyncController extends Controller
 
     /**
      * @Secure("ROLE_ADMIN")
+     * @Route("/sync/calendar_choice", name="sync_calendar_choice")
+     * @Template
+     */
+    public function calendarChoiceAction(Request $serverRequest)
+    {
+        $client = new Client('https://www.googleapis.com/calendar/v3');
+        $request = $client->get('users/me/calendarList');
+        $request->addHeader('Authorization', sprintf('Bearer %s', $this->getAccessToken()));
+        $body = $request->send()->getBody();
+        $data = json_decode($body);
+
+        // Build form
+        $calendarChoices = array();
+        foreach ($data->items as $calendar) {
+            $calendarChoices[$calendar->id] = $calendar->summary;
+        }
+        $calendarId = new KVObject('sync.calendar_id');
+        $calendarName = new KVObject('sync.calendar_name');
+
+        $form = $this->createFormBuilder($calendarId)
+            ->add('value', 'choice', array(
+                'choices' => $calendarChoices
+            ))
+            ->getForm();
+
+        // Handle form submit
+        if ($serverRequest->getMethod() == 'POST') {
+            $form->bindRequest($serverRequest);
+
+            if ($form->isValid()) {
+                $em = $this->get('doctrine.orm.entity_manager');
+                $em->merge($calendarId);
+                // Also store calendar name
+                $calendarName->setValue($calendarChoices[$calendarId->getValue()]);
+                $em->merge($calendarName);
+                // Save everything
+                $em->flush();
+
+                $this->get('session')->setFlash('notice', sprintf('The calendar has been selected.'));
+
+                return $this->redirect($this->generateUrl('sync_index'));
+            }
+        }
+
+        return array(
+            'form' => $form->createView()
+        );
+    }
+
+    /**
+     * @Secure("ROLE_ADMIN")
      * @Route("/sync/unlink", name="sync_unlink")
      */
     public function unlinkAccount()
@@ -100,7 +151,7 @@ class SyncController extends Controller
         $this->setValue('sync.account_email', $this->getUserEmail());
         $this->get('session')->setFlash('notice', 'Your account was linked successfully!');
 
-        return $this->redirect($this->generateUrl('sync_index'));
+        return $this->redirect($this->generateUrl('sync_calendar_choice'));
     }
 
     private function exchangeAuthorizationCode($authorizationCode)
