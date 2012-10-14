@@ -149,6 +149,11 @@ class SyncController extends Controller
 
     private function getAccessToken()
     {
+        if (time() >= $this->getValue('sync.access_token_expiration')) {
+            // throw new \Exception("OAuth2 access token expired.");
+            $this->refreshAccessToken();
+        }
+
         $accessToken = $this->getValue('sync.access_token');
         if (!$accessToken) {
             throw new \Exception("OAuth2 access token unavailable.");
@@ -156,6 +161,32 @@ class SyncController extends Controller
         }
 
         return $accessToken;
+    }
+
+    private function refreshAccessToken()
+    {
+        $refreshToken = $this->getValue('sync.refresh_token');
+        if (!$refreshToken) {
+            throw new \Exception("OAuth2 refresh token unavailable.");
+        }
+
+        $client = new Client();
+        $request = $client->post('https://accounts.google.com/o/oauth2/token');
+        $request->addPostFields(array(
+            'refresh_token' => $refreshToken,
+            'client_id'     => $this->getClientId(),
+            'client_secret' => $this->getClientSecret(),
+            'grant_type'    => 'refresh_token'
+        ));
+        try {
+           $response = $request->send();
+        } catch (\Guzzle\Http\Exception\BadResponseException $e) {
+            throw new HttpException(417, 'Unable to refresh access token.', $e);
+        }
+        $data = json_decode($response->getBody(), true);
+
+        $this->setValue('sync.access_token', $data['access_token']);
+        $this->setValue('sync.access_token_expiration', time() + $data['expires_in']);
     }
 
     private function revokeAccess()
