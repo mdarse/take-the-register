@@ -104,6 +104,10 @@ class SyncCommand extends ContainerAwareCommand
                     $output->writeln(sprintf('Non confirmed event, skipping. (%s).', $event->summary));
                     continue;
                 }
+                if ($this->isBlacklisted($event)) {
+                    $output->writeln(sprintf('Event filtered by blacklist, skipping. (%s)', $event->summary));
+                    continue;
+                }
 
                 // Get existing record
                 $lesson = $repo->find($event->id);
@@ -149,6 +153,21 @@ class SyncCommand extends ContainerAwareCommand
         $em->flush();
 
         $output->writeln('Sync done.');
+    }
+
+    private function isBlacklisted($event)
+    {
+        $blacklist = array('Mission entreprise', 'Férié');
+
+        if (in_array($event->summary, $blacklist)) {
+            return true;
+        }
+        // Filters events ending with "?" or "(???)"
+        if (1 === preg_match('/(\?|\(\?\?\?\))$/', $event->summary)) {
+            return true;
+        }
+
+        return false;
     }
 
     private function getValue($key)
