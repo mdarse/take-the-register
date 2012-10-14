@@ -49,7 +49,7 @@ class SyncCommand extends ContainerAwareCommand
         $client = new Client('https://www.googleapis.com/calendar/v3/');
         $request = $client->get(array(
             'calendars/{calendarId}/events?'.
-            // 'showDeleted={showDeleted}&'.
+            'showDeleted={showDeleted}&'.
             'singleEvents={singleEvents}&'.
             'orderBy={orderBy}&'.
             // 'maxResults={maxResults}&'.
@@ -114,8 +114,20 @@ class SyncCommand extends ContainerAwareCommand
 
                 // We've got an event, decide if we keep it and make a lesson if so.
                 // From here event are expected in the future
-                if ($event->status !== 'confirmed') {
-                    $output->writeln(sprintf('Non confirmed event, skipping. (%s).', $event->summary));
+                if ($event->status === 'cancelled') {
+                    $event->updated = \DateTime::createFromFormat('Y-m-d\TH:i:s.000\Z', $event->updated);
+                    if ($event->updated < $lastSync) {
+                        continue;
+                    }
+                    $lesson = $repo->find($event->id);
+                    if (!$lesson) {
+                        continue;
+                    }
+                    if ($lesson->getStart() > $now) {
+                        $em->remove($lesson);
+                        $removedEventsCount++;
+                    }
+                    // $output->writeln(sprintf('Cancelled event, skipping. (%s).', $event->summary));
                     continue;
                 }
                 if ($this->isBlacklisted($event)) {
@@ -179,6 +191,8 @@ class SyncCommand extends ContainerAwareCommand
         // Flush to DB
         $em->flush();
 
+        $this->setValue('sync.last', $now->format(\DateTime::RFC3339));
+
         $output->writeln(sprintf(
             '<info>%d</info> event(s) added, <info>%d</info> updated, <info>%d</info> removed, <info>%d</info> matched and <info>%d</info> filtered.',
             $addedEventsCount,
@@ -240,5 +254,20 @@ class SyncCommand extends ContainerAwareCommand
         }
 
         return $object->getValue();
+    }
+
+    private function setValue($key, $value)
+    {
+        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
+        $object = $em->find('UCPAbsenceBundle:KVObject', $key);
+
+        if (!$object) {
+            $object = new KVObject($key, $value);
+            $em->persist($object);
+        } else {
+            $object->setValue($value);
+        }
+
+        $em->flush();
     }
 }
