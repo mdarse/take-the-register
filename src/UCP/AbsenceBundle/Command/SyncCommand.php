@@ -34,10 +34,6 @@ class SyncCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         // Check app status
-        $accessToken = $this->getValue('sync.access_token');
-        if (!$accessToken) {
-            throw new \Exception("No Google account linked.");
-        }
         $calendarId = $this->getValue('sync.calendar_id');
         $calendarName = $this->getValue('sync.calendar_name');
         if (!$calendarId || !$calendarName) {
@@ -69,7 +65,7 @@ class SyncCommand extends ContainerAwareCommand
                 'updatedMin' => date(DATE_RFC3339, time() - 3600*24 * 14)
             )
         ));
-        $request->addHeader('Authorization', sprintf('Bearer %s', $accessToken));
+        $request->addHeader('Authorization', sprintf('Bearer %s', $this->getAccessToken()));
         try {
             $response = $request->send();
         } catch (\Guzzle\Http\Exception\BadResponseException $e) {
@@ -269,5 +265,47 @@ class SyncCommand extends ContainerAwareCommand
         }
 
         $em->flush();
+    }
+
+    private function getAccessToken()
+    {
+        $accessToken = $this->getValue('sync.access_token');
+        if (!$accessToken) {
+            throw new \Exception("OAuth2 access token unavailable.");
+            // TODO get a token
+        }
+
+        if (time() >= $this->getValue('sync.access_token_expiration')) {
+            // throw new \Exception("OAuth2 access token expired.");
+            $this->refreshAccessToken();
+        }
+
+        return $accessToken;
+    }
+
+    private function refreshAccessToken()
+    {
+        $refreshToken = $this->getValue('sync.refresh_token');
+        if (!$refreshToken) {
+            throw new \Exception("OAuth2 refresh token unavailable.");
+        }
+
+        $client = new Client();
+        $request = $client->post('https://accounts.google.com/o/oauth2/token');
+        $request->addPostFields(array(
+            'refresh_token' => $refreshToken,
+            'client_id'     => $this->getClientId(),
+            'client_secret' => $this->getClientSecret(),
+            'grant_type'    => 'refresh_token'
+        ));
+        try {
+            $response = $request->send();
+        } catch (\Guzzle\Http\Exception\BadResponseException $e) {
+            throw new \Exception('Unable to refresh access token.', null, $e);
+        }
+        $data = json_decode($response->getBody(), true);
+
+        $this->setValue('sync.access_token', $data['access_token']);
+        $this->setValue('sync.access_token_expiration', time() + $data['expires_in']);
     }
 }
