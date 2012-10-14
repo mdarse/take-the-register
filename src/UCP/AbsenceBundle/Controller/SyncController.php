@@ -107,6 +107,9 @@ class SyncController extends Controller
      */
     public function unlinkAccount()
     {
+        // Romove authorization from Google
+        $this->revokeAccess();
+
         // Remove credentials
         $toBeCleaned = array(
             'sync.access_token',
@@ -118,8 +121,7 @@ class SyncController extends Controller
             $this->setValue($key, null);
         }
 
-        // Romove authorization from Google
-        $this->revokeAccess();
+        return $this->redirect($this->generateUrl('sync_index'));
     }
 
     /**
@@ -242,9 +244,14 @@ class SyncController extends Controller
 
     private function revokeAccess()
     {
+        $token = $this->getValue('sync.access_token');
+        if (!$token) {
+            throw new HttpException(400, 'No revokable token found.');
+        }
+
         $client = new Client('https://accounts.google.com/o/oauth2');
         $request = $client->get(array('revoke?token={token}', array(
-            'token' => $this->getValue('sync.access_token')
+            'token' => $token
         )));
         try {
            $response = $request->send();
