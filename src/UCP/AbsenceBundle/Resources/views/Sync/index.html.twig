@@ -9,5 +9,7 @@ Sync with Google calendar is enabled on {{ account_email }} with calendar "{{ ca
 {% else %}
 No Google account linked, click <a href="{{ path('sync_link') }}">here</a> to link an account.
 {% endif %}
+<br>
+<i>Last sync on {{ last_sync|date() }}.
 
 {% endblock %}

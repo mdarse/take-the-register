@@ -20,9 +20,12 @@ class SyncController extends Controller
      */
     public function indexAction()
     {
+        $lastSync = \DateTime::createFromFormat(\DateTime::RFC3339, $this->getValue('sync.last'));
+
         return array(
             'calendar_name' => $this->getValue('sync.calendar_name'),
-            'account_email' => $this->getValue('sync.account_email')
+            'account_email' => $this->getValue('sync.account_email'),
+            'last_sync'     => $lastSync
         );
     }
 
