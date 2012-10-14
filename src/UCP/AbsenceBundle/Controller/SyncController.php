@@ -201,15 +201,15 @@ class SyncController extends Controller
 
     private function getAccessToken()
     {
-        if (time() >= $this->getValue('sync.access_token_expiration')) {
-            // throw new \Exception("OAuth2 access token expired.");
-            $this->refreshAccessToken();
-        }
-
         $accessToken = $this->getValue('sync.access_token');
         if (!$accessToken) {
             throw new \Exception("OAuth2 access token unavailable.");
             // TODO get a token
+        }
+
+        if (time() >= $this->getValue('sync.access_token_expiration')) {
+            // throw new \Exception("OAuth2 access token expired.");
+            $this->refreshAccessToken();
         }
 
         return $accessToken;
