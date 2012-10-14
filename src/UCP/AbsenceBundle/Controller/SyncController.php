@@ -112,10 +112,9 @@ class SyncController extends Controller
 
         // Remove credentials
         $toBeCleaned = array(
-            'sync.access_token',
-            'sync.access_token_expiration',
-            'sync.refresh_token',
-            'sync.account_email'
+            'sync.account_email',
+            'sync.calendar_id',
+            'sync.calendar_name'
         );
         foreach ($toBeCleaned as $key) {
             $this->setValue($key, null);
@@ -259,7 +258,15 @@ class SyncController extends Controller
             throw new HttpException(417, 'Unable to revoke token.', $e);
         }
 
-        echo($response);
+        // Remove credentials
+        $toBeCleaned = array(
+            'sync.access_token',
+            'sync.access_token_expiration',
+            'sync.refresh_token'
+        );
+        foreach ($toBeCleaned as $key) {
+            $this->setValue($key, null);
+        }
     }
 
     private function getValue($key)
