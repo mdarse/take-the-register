@@ -97,6 +97,7 @@ class SyncController extends Controller
         $this->exchangeAuthorizationCode($request->query->get('code'));
 
         // From here account is linked
+        $this->setValue('sync.account_email', $this->getUserEmail());
         $this->get('session')->setFlash('notice', 'Your account was linked successfully!');
 
         return $this->redirect($this->generateUrl('sync_index'));
@@ -129,6 +130,32 @@ class SyncController extends Controller
         if (isset($data['refresh_token'])) {
             $this->setValue('sync.refresh_token', $data['refresh_token']);
         }
+    }
+
+    private function getUserEmail()
+    {
+        $client = new Client();
+        $request = $client->get('https://www.googleapis.com/oauth2/v1/userinfo');
+        $request->addHeader('Authorization', sprintf('Bearer %s', $this->getAccessToken()));
+        try {
+           $response = $request->send();
+        } catch (\Guzzle\Http\Exception\BadResponseException $e) {
+            throw new HttpException(417, 'Unable to retrieve account info.', $e);
+        }
+        $data = json_decode($response->getBody(), true);
+
+        return $data['email'];
+    }
+
+    private function getAccessToken()
+    {
+        $accessToken = $this->getValue('sync.access_token');
+        if (!$accessToken) {
+            throw new \Exception("OAuth2 access token unavailable.");
+            // TODO get a token
+        }
+
+        return $accessToken;
     }
 
     private function revokeAccess()
