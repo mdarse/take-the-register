@@ -58,4 +58,175 @@ class Company
      * @ORM\Column(type="string", length=5, nullable=true)
      */
     private $postalCode;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Company
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set tutorName
+     *
+     * @param string $tutorName
+     * @return Company
+     */
+    public function setTutorName($tutorName)
+    {
+        $this->tutorName = $tutorName;
+    
+        return $this;
+    }
+
+    /**
+     * Get tutorName
+     *
+     * @return string 
+     */
+    public function getTutorName()
+    {
+        return $this->tutorName;
+    }
+
+    /**
+     * Set tutorEmail
+     *
+     * @param string $tutorEmail
+     * @return Company
+     */
+    public function setTutorEmail($tutorEmail)
+    {
+        $this->tutorEmail = $tutorEmail;
+    
+        return $this;
+    }
+
+    /**
+     * Get tutorEmail
+     *
+     * @return string 
+     */
+    public function getTutorEmail()
+    {
+        return $this->tutorEmail;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     * @return Company
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     * @return Company
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string 
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     * @return Company
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set postalCode
+     *
+     * @param string $postalCode
+     * @return Company
+     */
+    public function setPostalCode($postalCode)
+    {
+        $this->postalCode = $postalCode;
+    
+        return $this;
+    }
+
+    /**
+     * Get postalCode
+     *
+     * @return string 
+     */
+    public function getPostalCode()
+    {
+        return $this->postalCode;
+    }
 }
