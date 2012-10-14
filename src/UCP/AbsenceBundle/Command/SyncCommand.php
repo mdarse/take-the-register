@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Guzzle\Http\Client;
 use UCP\AbsenceBundle\Entity\KVObject;
+use UCP\AbsenceBundle\Entity\Lesson;
 
 class SyncCommand extends ContainerAwareCommand
 {
@@ -48,16 +49,16 @@ class SyncCommand extends ContainerAwareCommand
         $client = new Client('https://www.googleapis.com/calendar/v3/');
         $request = $client->get(array(
             'calendars/{calendarId}/events?'.
-            'showDeleted={showDeleted}&'.
+            // 'showDeleted={showDeleted}&'.
             'singleEvents={singleEvents}&'.
             'orderBy={orderBy}&'.
-            'maxResults={maxResults}&'.
+            // 'maxResults={maxResults}&'.
             'timeMin={timeMin}&',
             // 'timeMax={timeMax}&',
             // 'updatedMin={updatedMin}&',
             array(
                 'calendarId' => $calendarId,
-                'showDeleted' => 'false',
+                'showDeleted' => 'true',
                 'singleEvents' => 'true',
                 // Events order. The default is an unspecified, stable order.
                 'orderBy' => 'startTime', // "startTime" require "singleEvents" to true
@@ -86,24 +87,66 @@ class SyncCommand extends ContainerAwareCommand
         }
 
         // Start of data use
+        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
+        $repo = $em->getRepository('UCPAbsenceBundle:Lesson');
+        $now = new \DateTime();
+
         foreach ($data->items as $event) {
-            try {
-                $start = \DateTime::createFromFormat(\DateTime::RFC3339, $event->start->dateTime);
-                $end = \DateTime::createFromFormat(\DateTime::RFC3339, $event->end->dateTime);
+            // try {
+                $event->start = \DateTime::createFromFormat(\DateTime::RFC3339, $event->start->dateTime);
+                $event->end = \DateTime::createFromFormat(\DateTime::RFC3339, $event->end->dateTime);
+                $event->id;
+                $event->summary;
+
+                // We've got an event, decide if we keep it and make a lesson if so.
+                // From here event are expected in the future
+                if ($event->status !== 'confirmed') {
+                    $output->writeln(sprintf('Non confirmed event, skipping. (%s).', $event->summary));
+                    continue;
+                }
+
+                // Get existing record
+                $lesson = $repo->find($event->id);
+                if (!$lesson) {
+                    // Nothing found: this is a new one
+                    $lesson = new Lesson();
+                    $lesson->setId($event->id);
+                    $em->persist($lesson);
+                } else {
+                    // Check if we should edit this object (can be an old event moved in future)
+                    if ($lesson->getStart() < $now) {
+                        // TODO
+                        // - Check if register have been taken on this lesson
+                        // - if so maybe we should duplicate event?
+                        // - Do we skip it each time? (introduce inconsistency for end user)
+                        continue;
+                    }
+                }
+
                 $output->writeln(sprintf(
-                    '[%s %s] %s %s',
-                    $start->format(\DateTime::RFC822),
-                    $end->format(\DateTime::RFC822),
-                    $event->id,
+                    '[%s] %s',
+                    $event->start->format(\DateTime::RFC822),
                     $event->summary
                 ));
 
-            } catch (\Exception $e) {
-                $output->writeln(print_r($event));
-            }
+                // Modify event
+                if ($lesson->getStart() != $event->start)
+                    $lesson->setStart($event->start);
+
+                if ($lesson->getEnd() != $event->end)
+                    $lesson->setEnd($event->end);
+
+                if ($lesson->getLabel() != $event->summary)
+                    $lesson->setLabel($event->summary);
+
+
+            // } catch (\Exception $e) {
+            //     $output->writeln(print_r($event));
+            // }
         }
 
-
+        // Flush to DB
+        $em->flush();
 
         $output->writeln('Sync done.');
     }
