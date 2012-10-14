@@ -6,30 +6,30 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class StudentType extends AbstractType
+class CompanyType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname')
-            ->add('lastname')
-            ->add('ine')
-            ->add('email')
+            ->add('name')
+            ->add('tutorName')
+            ->add('tutorEmail')
             ->add('phone')
-            // ->add('picturePath')
-            ->add('company', new CompanyType())
+            ->add('address')
+            ->add('city')
+            ->add('postalCode')
         ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'UCP\AbsenceBundle\Entity\Student'
+            'data_class' => 'UCP\AbsenceBundle\Entity\Company'
         ));
     }
 
     public function getName()
     {
-        return 'ucp_absencebundle_studenttype';
+        return 'ucp_absencebundle_companytype';
     }
 }

@@ -47,7 +47,7 @@ class Student
     private $picturePath;
 
     /**
-     * @ORM\OneToOne(targetEntity="Company")
+     * @ORM\OneToOne(targetEntity="Company", cascade="all", orphanRemoval=true)
      */
     private $company;
 
