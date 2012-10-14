@@ -1,5 +1,13 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-Hello world!
+<h1>Students</h1>
+<ul>
+	{% for student in students %}
+	<li>{{ student.firstname }} {{ student.lastname }}</li>
+	{% else %}
+	<li class="placeholder"><i>No students registered</i></li>
+	{% endfor %}
+</ul>
+
 {% endblock %}
