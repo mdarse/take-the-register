@@ -169,7 +169,7 @@ class SyncController extends Controller
         ));
 
         try {
-           $response = $request->send();
+            $response = $request->send();
         } catch (\Guzzle\Http\Exception\BadResponseException $e) {
             throw new HttpException(417, 'Authentication provider did respond with an error.', $e);
         }
@@ -190,7 +190,7 @@ class SyncController extends Controller
         $request = $client->get('https://www.googleapis.com/oauth2/v1/userinfo');
         $request->addHeader('Authorization', sprintf('Bearer %s', $this->getAccessToken()));
         try {
-           $response = $request->send();
+            $response = $request->send();
         } catch (\Guzzle\Http\Exception\BadResponseException $e) {
             throw new HttpException(417, 'Unable to retrieve account info.', $e);
         }
@@ -231,7 +231,7 @@ class SyncController extends Controller
             'grant_type'    => 'refresh_token'
         ));
         try {
-           $response = $request->send();
+            $response = $request->send();
         } catch (\Guzzle\Http\Exception\BadResponseException $e) {
             throw new HttpException(417, 'Unable to refresh access token.', $e);
         }
@@ -253,7 +253,7 @@ class SyncController extends Controller
             'token' => $token
         )));
         try {
-           $response = $request->send();
+            $response = $request->send();
         } catch (\Guzzle\Http\Exception\BadResponseException $e) {
             throw new HttpException(417, 'Unable to revoke token.', $e);
         }
