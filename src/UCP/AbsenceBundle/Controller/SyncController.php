@@ -52,6 +52,27 @@ class SyncController extends Controller
 
     /**
      * @Secure("ROLE_ADMIN")
+     * @Route("/sync/unlink", name="sync_unlink")
+     */
+    public function unlinkAccount()
+    {
+        // Remove credentials
+        $toBeCleaned = array(
+            'sync.access_token',
+            'sync.access_token_expiration',
+            'sync.refresh_token',
+            'sync.account_email'
+        );
+        foreach ($toBeCleaned as $key) {
+            $this->setValue($key, null);
+        }
+
+        // Romove authorization from Google
+        $this->revokeAccess();
+    }
+
+    /**
+     * @Secure("ROLE_ADMIN")
      * @Route("/sync/callback", name="sync_auth_callback")
      */
     public function callbackAction(Request $request)
@@ -108,6 +129,21 @@ class SyncController extends Controller
         if (isset($data['refresh_token'])) {
             $this->setValue('sync.refresh_token', $data['refresh_token']);
         }
+    }
+
+    private function revokeAccess()
+    {
+        $client = new Client('https://accounts.google.com/o/oauth2');
+        $request = $client->get(array('revoke?token={token}', array(
+            'token' => $this->getValue('sync.access_token')
+        )));
+        try {
+           $response = $request->send();
+        } catch (\Guzzle\Http\Exception\BadResponseException $e) {
+            throw new HttpException(417, 'Unable to revoke token.', $e);
+        }
+
+        echo($response);
     }
 
     private function getValue($key)
