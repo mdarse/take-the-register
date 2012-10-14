@@ -35,4 +35,9 @@ class Lesson
      * @ORM\Column(type="datetime")
      */
     private $end;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $eventId;
 }
