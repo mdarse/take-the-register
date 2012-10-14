@@ -11,8 +11,7 @@ class Lesson
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="string")
      */
     private $id;
 
@@ -37,14 +36,22 @@ class Lesson
     private $end;
 
     /**
-     * @ORM\Column(type="string")
+     * Set id
+     *
+     * @param string $id
+     * @return Lesson
      */
-    private $eventId;
+    public function setId($id)
+    {
+        $this->id = $id;
+    
+        return $this;
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return string 
      */
     public function getId()
     {
@@ -118,29 +125,6 @@ class Lesson
     public function getEnd()
     {
         return $this->end;
-    }
-
-    /**
-     * Set eventId
-     *
-     * @param string $eventId
-     * @return Lesson
-     */
-    public function setEventId($eventId)
-    {
-        $this->eventId = $eventId;
-    
-        return $this;
-    }
-
-    /**
-     * Get eventId
-     *
-     * @return string 
-     */
-    public function getEventId()
-    {
-        return $this->eventId;
     }
 
     /**
