@@ -89,12 +89,26 @@ class SyncCommand extends ContainerAwareCommand
         // Start of data use
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
         $repo = $em->getRepository('UCPAbsenceBundle:Lesson');
+        $lastSync = \DateTime::createFromFormat(\DateTime::RFC3339, $this->getValue('sync.last'));
         $now = new \DateTime();
+
+        $blacklistedEventsCount = 0;
+        $addedEventsCount = 0;
+        $updatedEventsCount = 0;
+        $removedEventsCount = 0;
+        $matchedEventsCount = 0;
+
 
         foreach ($data->items as $event) {
             // try {
-                $event->start = \DateTime::createFromFormat(\DateTime::RFC3339, $event->start->dateTime);
-                $event->end = \DateTime::createFromFormat(\DateTime::RFC3339, $event->end->dateTime);
+                if (property_exists($event->start, 'date')) {
+                    // This is an unsupported all-day event
+                    $blacklistedEventsCount++;
+                    continue;
+                }
+
+                $event->start   = \DateTime::createFromFormat(\DateTime::RFC3339, $event->start->dateTime);
+                $event->end     = \DateTime::createFromFormat(\DateTime::RFC3339, $event->end->dateTime);
                 $event->id;
                 $event->summary;
 
@@ -105,7 +119,8 @@ class SyncCommand extends ContainerAwareCommand
                     continue;
                 }
                 if ($this->isBlacklisted($event)) {
-                    $output->writeln(sprintf('Event filtered by blacklist, skipping. (%s)', $event->summary));
+                    $blacklistedEventsCount++;
+                    // $output->writeln(sprintf('Event filtered by blacklist, skipping. (%s)', $event->summary));
                     continue;
                 }
 
@@ -116,6 +131,7 @@ class SyncCommand extends ContainerAwareCommand
                     $lesson = new Lesson();
                     $lesson->setId($event->id);
                     $em->persist($lesson);
+                    $addedEventsCount++;
                 } else {
                     // Check if we should edit this object (can be an old event moved in future)
                     if ($lesson->getStart() < $now) {
@@ -127,35 +143,49 @@ class SyncCommand extends ContainerAwareCommand
                     }
                 }
 
-                $output->writeln(sprintf(
-                    '[%s] %s',
-                    $event->start->format(\DateTime::RFC822),
-                    $event->summary
-                ));
+                // $output->writeln(sprintf(
+                //     '[%s] %s',
+                //     $event->start->format(\DateTime::RFC822),
+                //     $event->summary
+                // ));
 
                 // Modify event
+                $updated = false;
                 if ($lesson->getStart() != $event->start)
+                    $updated = true;
                     $lesson->setStart($event->start);
 
                 if ($lesson->getEnd() != $event->end)
+                    $updated = true;
                     $lesson->setEnd($event->end);
 
                 if ($lesson->getLabel() != $event->summary)
+                    $updated = true;
                     $lesson->setLabel($event->summary);
+                if ($updated)
+                    $updatedEventsCount++;
 
                 // Try to match lesson with a professor
                 if ($this->resolveProfessor($lesson)) {
-                    $output->writeln(sprintf('Matched with %s', $lesson->getProfessor()->getUsername()));
+                    $matchedEventsCount++;
+                    // $output->writeln(sprintf('Matched with %s', $lesson->getProfessor()->getUsername()));
                 }
 
             // } catch (\Exception $e) {
-            //     $output->writeln(print_r($event));
+            //     print_r($event);
             // }
         }
 
         // Flush to DB
         $em->flush();
 
+        $output->writeln(sprintf(
+            '<info>%d</info> event(s) added, <info>%d</info> updated, <info>%d</info> removed, <info>%d</info> matched and <info>%d</info> filtered.',
+            $addedEventsCount,
+            $updatedEventsCount,
+            $removedEventsCount,
+            $matchedEventsCount,
+            $blacklistedEventsCount));
         $output->writeln('Sync done.');
     }
 
