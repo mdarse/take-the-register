@@ -2,7 +2,12 @@
 
 {% block body %}
 <h1>Google calendar sync</h1>
-<a href="{{ path('sync_link') }}">Link account</a><br>
-<a href="{{ path('sync_calendar_choice') }}">Calendar choice</a><br>
-<a href="{{ path('sync_unlink') }}">Unlink account</a><br>
+
+{% if account_email is not null %}
+Sync with Google calendar is enabled on {{ account_email }} with calendar "{{ calendar_name }}".<br>
+<a href="{{ path('sync_unlink') }}">Remove account</a> or <a href="{{ path('sync_calendar_choice') }}">change calendar</a>.
+{% else %}
+No Google account linked, click <a href="{{ path('sync_link') }}">here</a> to link an account.
+{% endif %}
+
 {% endblock %}
