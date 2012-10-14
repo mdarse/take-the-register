@@ -23,6 +23,11 @@ class User extends BaseUser
     private $phone;
 
     /**
+     * @ORM\Column(type="string", length=3, nullable=true, unique=true)
+     */
+    private $initials;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -53,5 +58,28 @@ class User extends BaseUser
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * Set initials
+     *
+     * @param string $initials
+     * @return User
+     */
+    public function setInitials($initials)
+    {
+        $this->initials = $initials;
+    
+        return $this;
+    }
+
+    /**
+     * Get initials
+     *
+     * @return string 
+     */
+    public function getInitials()
+    {
+        return $this->initials;
     }
 }

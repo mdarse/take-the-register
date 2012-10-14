@@ -143,6 +143,10 @@ class SyncCommand extends ContainerAwareCommand
                 if ($lesson->getLabel() != $event->summary)
                     $lesson->setLabel($event->summary);
 
+                // Try to match lesson with a professor
+                if ($this->resolveProfessor($lesson)) {
+                    $output->writeln(sprintf('Matched with %s', $lesson->getProfessor()->getUsername()));
+                }
 
             // } catch (\Exception $e) {
             //     $output->writeln(print_r($event));
@@ -168,6 +172,30 @@ class SyncCommand extends ContainerAwareCommand
         }
 
         return false;
+    }
+
+    private function resolveProfessor($lesson)
+    {
+        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
+        $repo = $em->getRepository('UCPAbsenceBundle:User');
+
+        // Extract initials from lesson label
+        $matches = array();
+        if (1 !== preg_match('/\(([a-z]{2,3})\)$/i', $lesson->getLabel(), $matches)) {
+            return false;
+        }
+        $initials = $matches[1];
+
+        // We found initials, now trying to match
+        $professor = $repo->findOneByInitials($initials);
+        if (!$professor) {
+            return false;
+        }
+
+        // We have a professor matching with initials !
+        $lesson->setProfessor($professor);
+
+        return true;
     }
 
     private function getValue($key)
