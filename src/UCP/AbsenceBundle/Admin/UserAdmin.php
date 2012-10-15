@@ -33,6 +33,18 @@ class UserAdmin extends Admin
             ->add('email')
             ->add('phone')
             ->add('enabled')
+            // ->add('roles', 'sonata_type_immutable_array',  array(
+            //     'keys' => array(
+            //         array('type', 'choice', array(
+            //             'choices' => array(
+            //                 'ROLE_USER'      => 'Intervenant',
+            //                 'RODE_SECRETARY' => 'Secrétaire',
+            //                 'ROLE_ADMIN'     => 'Responsable'
+            //             ),
+            //             'expanded' => true
+            //         ))
+            //     )
+            // ))
         ;
     }
 
