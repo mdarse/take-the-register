@@ -3,6 +3,7 @@
 namespace UCP\AbsenceBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use UCP\AbsenceBundle\Entity\Lesson;
 
 /**
  * LessonRepository
@@ -21,7 +22,7 @@ class LessonRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public function findPreviousLesson($lesson)
+    public function findPreviousLesson(Lesson $lesson)
     {
         $query = $this->_em->createQuery('SELECT l FROM UCPAbsenceBundle:Lesson l WHERE l.start < ?1 ORDER BY l.start DESC')
             ->setParameter(1, $lesson->getStart())
@@ -30,7 +31,7 @@ class LessonRepository extends EntityRepository
         return $query->getOneOrNullResult();
     }
 
-    public function findNextLesson($lesson)
+    public function findNextLesson(Lesson $lesson)
     {
         $query = $this->_em->createQuery('SELECT l FROM UCPAbsenceBundle:Lesson l WHERE l.start > ?1 ORDER BY l.start')
             ->setParameter(1, $lesson->getStart())
