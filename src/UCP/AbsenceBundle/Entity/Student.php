@@ -53,7 +53,7 @@ class Student
     private $company;
 
     /**
-     * @ORM\OneToMany(targetEntity="Absence", mappedBy="lesson")
+     * @ORM\OneToMany(targetEntity="Absence", mappedBy="student")
      */
     private $absences;
 

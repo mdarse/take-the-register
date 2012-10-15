@@ -40,6 +40,7 @@ class Lesson
      * @ORM\OneToMany(targetEntity="Absence", mappedBy="lesson")
      */
     private $absences;
+    
     /**
      * Constructor
      */
