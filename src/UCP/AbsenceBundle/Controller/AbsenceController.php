@@ -23,9 +23,9 @@ class AbsenceController extends Controller
      */
     public function indexAction()
     {
-    	$em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
-    	$lessons = $em->getRepository('UCPAbsenceBundle:Lesson')->findUpcomingLessons(10);
+        $lessons = $em->getRepository('UCPAbsenceBundle:Lesson')->findUpcomingLessons(10);
 
         return array('upcoming_lessons' => $lessons);
     }
@@ -37,22 +37,22 @@ class AbsenceController extends Controller
      */
     public function showAction(Lesson $lesson)
     {
-    	$em = $this->getDoctrine()->getManager();
-    	
+        $em = $this->getDoctrine()->getManager();
+        
         $studentRepository = $em->getRepository('UCPAbsenceBundle:Student');
         $allStudents       = $studentRepository->findAll();
         $absentStudents    = $studentRepository->findAbsentByLesson($lesson);
 
         $repo           = $em->getRepository('UCPAbsenceBundle:Lesson');
-    	$previousLesson = $repo->findPreviousLesson($lesson);
-    	$nextLesson     = $repo->findNextLesson($lesson);
+        $previousLesson = $repo->findPreviousLesson($lesson);
+        $nextLesson     = $repo->findNextLesson($lesson);
 
         return array(
             'students'        => $allStudents,
             'absent_students' => $absentStudents,
-        	'lesson'          => $lesson,
-        	'previous_lesson' => $previousLesson,
-        	'next_lesson'     => $nextLesson
+            'lesson'          => $lesson,
+            'previous_lesson' => $previousLesson,
+            'next_lesson'     => $nextLesson
         );
     }
 
