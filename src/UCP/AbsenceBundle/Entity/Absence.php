@@ -31,6 +31,12 @@ class Absence
      */
     private $reason;
 
+    public function __construct(Lesson $lesson, Student $student)
+    {
+        $this->lesson = $lesson;
+        $this->student = $student;
+    }
+
     /**
      * Set justified
      *
