@@ -3,6 +3,7 @@
 namespace UCP\AbsenceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="UCP\AbsenceBundle\Repository\StudentRepository")
@@ -50,6 +51,19 @@ class Student
      * @ORM\OneToOne(targetEntity="Company", cascade="all", orphanRemoval=true)
      */
     private $company;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Absence", mappedBy="lesson")
+     */
+    private $absences;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->absences = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -220,5 +234,38 @@ class Student
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Add absences
+     *
+     * @param UCP\AbsenceBundle\Entity\Absence $absences
+     * @return Student
+     */
+    public function addAbsence(\UCP\AbsenceBundle\Entity\Absence $absences)
+    {
+        $this->absences[] = $absences;
+    
+        return $this;
+    }
+
+    /**
+     * Remove absences
+     *
+     * @param UCP\AbsenceBundle\Entity\Absence $absences
+     */
+    public function removeAbsence(\UCP\AbsenceBundle\Entity\Absence $absences)
+    {
+        $this->absences->removeElement($absences);
+    }
+
+    /**
+     * Get absences
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAbsences()
+    {
+        return $this->absences;
     }
 }

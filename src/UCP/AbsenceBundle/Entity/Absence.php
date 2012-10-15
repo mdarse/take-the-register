@@ -11,7 +11,7 @@ class Absence
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Student")
+     * @ORM\ManyToOne(targetEntity="Student", inversedBy="absences")
      */
     private $student;
 
