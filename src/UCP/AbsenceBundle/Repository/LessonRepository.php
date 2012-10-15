@@ -12,4 +12,30 @@ use Doctrine\ORM\EntityRepository;
  */
 class LessonRepository extends EntityRepository
 {
+    public function findUpcomingLessons($limit = 5)
+    {
+        $query = $this->_em->createQuery('SELECT l FROM UCPAbsenceBundle:Lesson l WHERE l.start >= ?1 ORDER BY l.start')
+            ->setParameter(1, new \DateTime())
+            ->setMaxResults($limit);
+
+        return $query->getResult();
+    }
+
+    public function findPreviousLesson($lesson)
+    {
+        $query = $this->_em->createQuery('SELECT l FROM UCPAbsenceBundle:Lesson l WHERE l.start < ?1 ORDER BY l.start DESC')
+            ->setParameter(1, $lesson->getStart())
+            ->setMaxResults(1);
+
+        return $query->getOneOrNullResult();
+    }
+
+    public function findNextLesson($lesson)
+    {
+        $query = $this->_em->createQuery('SELECT l FROM UCPAbsenceBundle:Lesson l WHERE l.start > ?1 ORDER BY l.start')
+            ->setParameter(1, $lesson->getStart())
+            ->setMaxResults(1);
+
+        return $query->getOneOrNullResult();
+    }
 }

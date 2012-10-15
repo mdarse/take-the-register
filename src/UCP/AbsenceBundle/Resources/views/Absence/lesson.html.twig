@@ -1,0 +1,17 @@
+{% extends 'UCPAbsenceBundle::layout.html.twig' %}
+
+{% block body %}
+<nav>
+    {% if previous_lesson %}
+    &lt; <a href="{{ path('lesson_show', { 'id': previous_lesson.id }) }}">{{ previous_lesson.label }}</a> |
+    {% endif %}
+    <a href="{{ path('lesson') }}">Back to list</a>
+    {% if next_lesson %}
+    | <a href="{{ path('lesson_show', { 'id': next_lesson.id }) }}">{{ next_lesson.label }}</a> &gt;
+    {% endif %}
+</nav>
+
+<h1>{{ lesson.label }}</h1>
+{{ lesson.start|date() }}-{{ lesson.end|date('H:i') }}
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'UCPAbsenceBundle::layout.html.twig' %}
+
+{% block body %}
+<h1>Upcoming lessons</h1>
+
+<ul>
+    {% for lesson in upcoming_lessons %}
+    <li><a href="{{ path('lesson_show', { 'id': lesson.id }) }}">{{ lesson.label }}</a> <i>{{ lesson.start|date() }}</i></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
