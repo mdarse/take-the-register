@@ -16,7 +16,7 @@ class SyncCommand extends ContainerAwareCommand
     {
         $this
             ->setName('ucp:lesson:sync')
-            ->setDescription('Sync upcomming lessons with Google calendar')
+            ->setDescription('Sync upcoming lessons with Google calendar')
             // ->addArgument(
             //     'name',
             //     InputArgument::OPTIONAL,
