@@ -3,6 +3,7 @@
 namespace UCP\AbsenceBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use UCP\AbsenceBundle\Entity\Lesson;
 
 /**
  * StudentRepository
@@ -12,4 +13,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class StudentRepository extends EntityRepository
 {
+	public function findAbsentByLesson(Lesson $lesson)
+	{
+		$query = $this->_em->createQuery('SELECT s FROM UCPAbsenceBundle:Student s JOIN s.absences a WHERE a.lesson = ?1')
+			->setParameter(1, $lesson);
+
+		return $query->getResult();
+	}
 }
