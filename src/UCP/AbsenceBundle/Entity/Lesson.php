@@ -3,6 +3,7 @@
 namespace UCP\AbsenceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="UCP\AbsenceBundle\Repository\LessonRepository")
@@ -35,6 +36,18 @@ class Lesson
      */
     private $end;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Absence", mappedBy="lesson")
+     */
+    private $absences;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->absences = new ArrayCollection();
+    }
+    
     /**
      * Set id
      *
@@ -148,5 +161,38 @@ class Lesson
     public function getProfessor()
     {
         return $this->professor;
+    }
+
+    /**
+     * Add absences
+     *
+     * @param UCP\AbsenceBundle\Entity\Absence $absences
+     * @return Lesson
+     */
+    public function addAbsence(\UCP\AbsenceBundle\Entity\Absence $absences)
+    {
+        $this->absences[] = $absences;
+    
+        return $this;
+    }
+
+    /**
+     * Remove absences
+     *
+     * @param UCP\AbsenceBundle\Entity\Absence $absences
+     */
+    public function removeAbsence(\UCP\AbsenceBundle\Entity\Absence $absences)
+    {
+        $this->absences->removeElement($absences);
+    }
+
+    /**
+     * Get absences
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAbsences()
+    {
+        return $this->absences;
     }
 }
