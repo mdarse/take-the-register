@@ -170,14 +170,16 @@ class SyncCommand extends ContainerAwareCommand
                 if ($lesson->getLabel() != $event->summary)
                     $updated = true;
                     $lesson->setLabel($event->summary);
-                if ($updated)
-                    $updatedEventsCount++;
 
                 // Try to match lesson with a professor
-                if ($this->resolveProfessor($lesson)) {
+                if ($lesson->getProfessor() === null && $this->resolveProfessor($lesson)) {
                     $matchedEventsCount++;
+                    $updated = true;
                     // $output->writeln(sprintf('Matched with %s', $lesson->getProfessor()->getUsername()));
                 }
+
+                if ($updated)
+                    $updatedEventsCount++;
 
             // } catch (\Exception $e) {
             //     print_r($event);
@@ -278,6 +280,7 @@ class SyncCommand extends ContainerAwareCommand
         if (time() >= $this->getValue('sync.access_token_expiration')) {
             // throw new \Exception("OAuth2 access token expired.");
             $this->refreshAccessToken();
+            $accessToken = $this->getValue('sync.access_token');
         }
 
         return $accessToken;
@@ -307,5 +310,15 @@ class SyncCommand extends ContainerAwareCommand
 
         $this->setValue('sync.access_token', $data['access_token']);
         $this->setValue('sync.access_token_expiration', time() + $data['expires_in']);
+    }
+
+    private function getClientId()
+    {
+        return '597083284747-le3i0u4j39dtijsu6tvdh8ls578q3bq9.apps.googleusercontent.com';
+    }
+
+    private function getClientSecret()
+    {
+        return 'eykTqAQ2lPB3vB59SpBvJ3Jv';
     }
 }
