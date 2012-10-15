@@ -17,7 +17,7 @@ class Absence
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="abcences")
+     * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="absences")
      */
     private $lesson;
 
