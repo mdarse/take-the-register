@@ -5,7 +5,7 @@
     {% if previous_lesson %}
     &lt; <a href="{{ path('lesson_show', { 'id': previous_lesson.id }) }}">{{ previous_lesson.label }}</a> |
     {% endif %}
-    <a href="{{ path('lesson') }}">Back to list</a>
+    <a href="{{ path('lesson') }}">Lessons list</a>
     {% if next_lesson %}
     | <a href="{{ path('lesson_show', { 'id': next_lesson.id }) }}">{{ next_lesson.label }}</a> &gt;
     {% endif %}
@@ -13,5 +13,19 @@
 
 <h1>{{ lesson.label }}</h1>
 {{ lesson.start|date() }}-{{ lesson.end|date('H:i') }}
+
+<ul>
+    {% for student in students %}
+    <li>
+        {% if student in absent_students %}
+        <del>{{ student.firstname }} {{ student.lastname }}</del>
+        <a href="{{ path('lesson_absence_delete', { 'lesson': lesson.id, 'student': student.id }) }}">present</a>
+        {% else %}
+        {{ student.firstname }} {{ student.lastname }}
+        <a href="{{ path('lesson_absence_create', { 'lesson': lesson.id, 'student': student.id }) }}">absent</a>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
 
 {% endblock %}

@@ -13,11 +13,11 @@ use UCP\AbsenceBundle\Entity\Lesson;
  */
 class StudentRepository extends EntityRepository
 {
-	public function findAbsentByLesson(Lesson $lesson)
-	{
-		$query = $this->_em->createQuery('SELECT s FROM UCPAbsenceBundle:Student s JOIN s.absences a WHERE a.lesson = ?1')
-			->setParameter(1, $lesson);
+    public function findAbsentByLesson(Lesson $lesson)
+    {
+        $query = $this->_em->createQuery('SELECT s FROM UCPAbsenceBundle:Student s INNER JOIN s.absences a WHERE a.lesson = ?1')
+            ->setParameter(1, $lesson);
 
-		return $query->getResult();
-	}
+        return $query->getResult();
+    }
 }
