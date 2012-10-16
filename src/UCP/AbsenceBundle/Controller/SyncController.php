@@ -313,7 +313,7 @@ class SyncController extends Controller
 
     private function getRedirectUri()
     {
-        // return $this->generateUrl('sync_auth_callback', array(), true);
+        return $this->generateUrl('sync_auth_callback', array(), true);
         return 'http://localhost:8888' . $this->generateUrl('sync_auth_callback');
     }
 }
