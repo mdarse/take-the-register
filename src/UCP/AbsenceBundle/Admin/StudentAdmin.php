@@ -33,7 +33,7 @@ class StudentAdmin extends Admin
             ->add('ine')
             ->add('email')
             ->add('phone')
-            // ->add('company', 'ucp_company_form')
+            ->add('company', 'ucp_absencebundle_companytype')
         ;
     }
 

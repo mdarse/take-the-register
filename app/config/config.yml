@@ -89,7 +89,7 @@ sonata_admin:
             - { position: left, type: sonata.admin.block.admin_list }
 
 services:
-    ucp_company_form:
+    ucp_absencebundle_companytype:
         class: UCP\AbsenceBundle\Form\CompanyType
         tags:
             - { name: form.type }
