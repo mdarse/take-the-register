@@ -29,10 +29,20 @@ class UserAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('username')
-            ->add('email')
-            ->add('phone')
-            ->add('enabled')
+            ->add('username', null, array(
+                'label' => "Nom d'utilisateur"
+            ))
+            ->add('email', null, array(
+                'label' => 'Email'
+            ))
+            ->add('phone', null, array(
+                'label' => 'Téléphone'
+            ))
+            ->add('enabled', null, array(
+                'required' => false,
+                'label' => 'Activé'
+            ))
+            // ->add('roles', 'sonata_security_roles', array( 'multiple' => true))
             // ->add('roles', 'sonata_type_immutable_array',  array(
             //     'keys' => array(
             //         array('type', 'choice', array(
@@ -55,8 +65,6 @@ class UserAdmin extends Admin
             ->add('email')
             ->add('phone')
             ->add('enabled')
-            ->add('lastLogin')
-            ->add('roles')
         ;
     }
 
