@@ -15,7 +15,7 @@ class CompanyType extends AbstractType
             ->add('tutorName')
             ->add('tutorEmail')
             ->add('phone')
-            ->add('address')
+            ->add('address', 'textarea')
             ->add('city')
             ->add('postalCode')
         ;
