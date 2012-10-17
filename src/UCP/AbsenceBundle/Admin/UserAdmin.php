@@ -18,6 +18,7 @@ class UserAdmin extends Admin
     {
         $showMapper
             ->add('username')
+            ->add('initials')
             ->add('email')
             ->add('phone')
             ->add('enabled')
@@ -31,6 +32,9 @@ class UserAdmin extends Admin
         $formMapper
             ->add('username', null, array(
                 'label' => "Nom d'utilisateur"
+            ))
+            ->add('initials', null, array(
+                'label' => 'Initiales'
             ))
             ->add('email', null, array(
                 'label' => 'Email'
