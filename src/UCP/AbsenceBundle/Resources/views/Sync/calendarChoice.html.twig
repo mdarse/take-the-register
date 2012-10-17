@@ -3,7 +3,7 @@
 {% block body %}
 <h1>Google calendar sync</h1>
 <form action="{{ path('sync_calendar_choice') }}" method="post" {{ form_enctype(form) }}>
-	{{ form_row(form.value, { 'label': "Calendar you want to sync" }) }}
+	{{ form_row(form.value, { 'label': "Calendrier à synchroniser" }) }}
 	{{ form_rest(form) }}
 	<input type="submit" />
 </form>

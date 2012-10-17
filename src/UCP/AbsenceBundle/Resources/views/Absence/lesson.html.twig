@@ -5,7 +5,7 @@
     {% if previous_lesson %}
     &lt; <a href="{{ path('lesson_show', { 'id': previous_lesson.id }) }}">{{ previous_lesson.label }}</a> |
     {% endif %}
-    <a href="{{ path('lesson') }}">Lessons list</a>
+    <a href="{{ path('lesson') }}">Liste des cours</a>
     {% if next_lesson %}
     | <a href="{{ path('lesson_show', { 'id': next_lesson.id }) }}">{{ next_lesson.label }}</a> &gt;
     {% endif %}

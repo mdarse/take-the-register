@@ -3,8 +3,8 @@
 {% block body %}
 <h1>Dashboard</h1>
 
-<a href="{{ path('lesson') }}">Take the register</a> |
-<a href="{{ path('student') }}">Manage students</a> |
-<a href="">Edit my profile</a> |
-<a href="{{ path('sync_index') }}">Configure calendar sync</a>
+<a href="{{ path('lesson') }}">Prochains cours</a> |
+<a href="{{ path('student_admin_list') }}">Gérer les étudiants</a> |
+<a href="{{ path('user_admin_list') }}">Gérer l'équipe pédogogique</a> |
+<a href="{{ path('sync_index') }}">Configurer la synchronisation Google calendar</a>
 {% endblock %}
