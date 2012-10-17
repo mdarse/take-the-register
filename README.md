@@ -13,12 +13,14 @@ Features
 
 Installation
 ------------
-Symfony uses [Composer][2] to manage its dependencies.
+Take The Regiser uses [Composer][2] to manage its dependencies.
 
 If you don't have Composer yet, download it following instructions on http://getcomposer.org/ or just run the following command:
 
 	curl -s http://getcomposer.org/installer | php
-	
+
+Before running next command, we will need to copy `app/config/parameters.yml.dist` to `app/config/parameters.yml` and adjust setting according to your configuration.
+
 Then use the `install` command to download dependencies:
 
 	php composer.phar install
@@ -38,6 +40,12 @@ If you get any warnings or recommendations, fix them before moving on.
 Make sure to ensure that the `app/cache` and `app/logs` directories are write-able for the web server (and also for the CLI):
 
 [Symfony configuration and setup][3]
+
+If everthing is OK, you can continue by running this:
+
+	php app/console cache:warmup
+	
+It will setup cache files an all that stuff automatically.
 
 Installing the database
 -----------------------
@@ -85,11 +93,11 @@ When syncing, Take The Register can automatically associate the event with the r
 
 `OOP Programming (PI)`
 
-The initials can be 2 or 3 letters. Of course, you need to set initials in the professor's profile for matching to work correctly.
+The initials can be 2 or 3 letters. Of course, you need to set initials in the professor's profile for matching to work correctly. The automatic matching will occur only if a professor hasn't be defined manually.
 
 Also, the application ignore event ending with `?`or `(???)`
 
-In a future version, you will be able to set custom expressions to filter or associate events.
+_In a future version, you will be able to set custom expressions to filter or associate events._
 
 
 	
