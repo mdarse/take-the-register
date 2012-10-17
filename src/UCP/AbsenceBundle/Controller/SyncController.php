@@ -63,6 +63,7 @@ class SyncController extends Controller
         $client = new Client('https://www.googleapis.com/calendar/v3');
         $request = $client->get('users/me/calendarList');
         $request->addHeader('Authorization', sprintf('Bearer %s', $this->getAccessToken()));
+        $request->getCurlOptions()->set(CURLOPT_SSL_VERIFYPEER, false);
         $body = $request->send()->getBody();
         $data = json_decode($body);
 
@@ -163,6 +164,7 @@ class SyncController extends Controller
         $client = new Client('https://accounts.google.com/o/oauth2/');
 
         $request = $client->post('token');
+        $request->getCurlOptions()->set(CURLOPT_SSL_VERIFYPEER, false);
         $request->addPostFields(array(
             'code'          => $authorizationCode,
             'client_id'     => $this->getClientId(),
@@ -192,6 +194,7 @@ class SyncController extends Controller
         $client = new Client();
         $request = $client->get('https://www.googleapis.com/oauth2/v1/userinfo');
         $request->addHeader('Authorization', sprintf('Bearer %s', $this->getAccessToken()));
+        $request->getCurlOptions()->set(CURLOPT_SSL_VERIFYPEER, false);
         try {
             $response = $request->send();
         } catch (\Guzzle\Http\Exception\BadResponseException $e) {
@@ -227,6 +230,7 @@ class SyncController extends Controller
 
         $client = new Client();
         $request = $client->post('https://accounts.google.com/o/oauth2/token');
+        $request->getCurlOptions()->set(CURLOPT_SSL_VERIFYPEER, false);
         $request->addPostFields(array(
             'refresh_token' => $refreshToken,
             'client_id'     => $this->getClientId(),
@@ -255,6 +259,7 @@ class SyncController extends Controller
         $request = $client->get(array('revoke?token={token}', array(
             'token' => $token
         )));
+        $request->getCurlOptions()->set(CURLOPT_SSL_VERIFYPEER, false);
         try {
             $response = $request->send();
         } catch (\Guzzle\Http\Exception\BadResponseException $e) {

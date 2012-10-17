@@ -66,6 +66,7 @@ class SyncCommand extends ContainerAwareCommand
             )
         ));
         $request->addHeader('Authorization', sprintf('Bearer %s', $this->getAccessToken()));
+        $request->getCurlOptions()->set(CURLOPT_SSL_VERIFYPEER, false);
         try {
             $response = $request->send();
         } catch (\Guzzle\Http\Exception\BadResponseException $e) {
@@ -301,6 +302,7 @@ class SyncCommand extends ContainerAwareCommand
             'client_secret' => $this->getClientSecret(),
             'grant_type'    => 'refresh_token'
         ));
+        $request->getCurlOptions()->set(CURLOPT_SSL_VERIFYPEER, false);
         try {
             $response = $request->send();
         } catch (\Guzzle\Http\Exception\BadResponseException $e) {
