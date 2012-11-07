@@ -16,3 +16,5 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     java_bin:          /usr/bin/java
+    node_bin:          /usr/local/bin/node
+    node_path:         /usr/local/lib/node_modules
