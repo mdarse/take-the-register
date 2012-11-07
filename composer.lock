@@ -1,5 +1,5 @@
 {
-    "hash": "257fe0518863250673be61ebcd17c73d",
+    "hash": "13abba85f6bf1ea15c2e9c4cc5404bb0",
     "packages": [
         {
             "name": "ddeboer/guzzle-bundle",
@@ -21,7 +21,6 @@
                 "symfony/symfony": ">=2.0,<2.2",
                 "guzzle/guzzle": "*"
             },
-            "time": "1341990130",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -60,7 +59,8 @@
                 "client",
                 "web service",
                 "Guzzle"
-            ]
+            ],
+            "time": "1341990130"
         },
         {
             "name": "doctrine/common",
@@ -442,7 +442,6 @@
                 "zend/zend-cache": "2.0.0beta3",
                 "zend/zend-log": "2.0.0beta3"
             },
-            "time": "1349038090",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -475,6 +474,60 @@
                 "http client",
                 "client",
                 "web service"
+            ],
+            "time": "1349038090"
+        },
+        {
+            "name": "incenteev/composer-parameter-handler",
+            "version": "dev-master",
+            "target-dir": "Incenteev/ParameterHandler",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Incenteev/ParameterHandler.git",
+                "reference": "6b42da93334d1b2977040175c74433470e4def60"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/Incenteev/ParameterHandler/zipball/6b42da93334d1b2977040175c74433470e4def60",
+                "reference": "6b42da93334d1b2977040175c74433470e4def60",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/yaml": ">=2.0,<2.3-dev"
+            },
+            "replace": {
+                "logsafe/composer-parameter-handler": "self.version"
+            },
+            "require-dev": {
+                "composer/composer": "*"
+            },
+            "time": "1351256616",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Incenteev\\ParameterHandler": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christophe Coevoet",
+                    "email": "stof@notk.org"
+                }
+            ],
+            "description": "Composer script handling your ignored parameter file",
+            "homepage": "https://github.com/Incenteev/ParameterHandler",
+            "keywords": [
+                "parameters management"
             ]
         },
         {
@@ -759,7 +812,6 @@
                 "silex/silex": "for the integration with your silex application",
                 "twig/twig": "for the TwigRenderer and the integration with your templates"
             },
-            "time": "1339345240",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -794,7 +846,8 @@
             "keywords": [
                 "menu",
                 "tree"
-            ]
+            ],
+            "time": "1339345240"
         },
         {
             "name": "knplabs/knp-menu-bundle",
@@ -817,7 +870,7 @@
             },
             "time": "2012-05-17 11:56:49",
             "type": "symfony-bundle",
-            "installation-source": "dist",
+            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Knp\\Bundle\\MenuBundle": ""
@@ -1195,7 +1248,6 @@
                 "sonata-project/admin-bundle": "dev-master",
                 "sonata-project/cache-bundle": "dev-master"
             },
-            "time": "1349697892",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1222,7 +1274,8 @@
             "keywords": [
                 "sonata",
                 "block"
-            ]
+            ],
+            "time": "1349697892"
         },
         {
             "name": "sonata-project/doctrine-orm-admin-bundle",
@@ -1296,7 +1349,6 @@
             "suggest": {
                 "ext-curl": "*"
             },
-            "time": "1346967589",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -1322,7 +1374,8 @@
                 "csv",
                 "client",
                 "export"
-            ]
+            ],
+            "time": "1346967589"
         },
         {
             "name": "sonata-project/jquery-bundle",
@@ -1343,7 +1396,6 @@
                 "php": ">=5.3.2",
                 "symfony/framework-bundle": "2.*"
             },
-            "time": "1346283282",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1370,7 +1422,8 @@
             "keywords": [
                 "jquery",
                 "sonata"
-            ]
+            ],
+            "time": "1346283282"
         },
         {
             "name": "swiftmailer/swiftmailer",
