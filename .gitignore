@@ -6,3 +6,10 @@ app/config/parameters.yml
 build/
 vendor
 composer.phar
+
+# Mac OS X
+.DS_Store
+Icon
+._*
+.Spotlight-V100
+.Trashes
