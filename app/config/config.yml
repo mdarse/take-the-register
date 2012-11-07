@@ -27,7 +27,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ ]
+    bundles:        [FOSUserBundle]
     java: %java_bin%
     filters:
         cssrewrite: ~
