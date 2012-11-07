@@ -69,6 +69,13 @@ fos_user:
     firewall_name: main
     user_class: UCP\AbsenceBundle\Entity\User
 
+# FOSRestBundle Configuration
+fos_rest:
+    view:
+        formats:
+            json: true
+        templating_formats: ~
+
 # SonataBlockBundle (SonataAdminBundle dependency)
 sonata_block:
     default_contexts: [cms]
