@@ -19,7 +19,7 @@
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
         "friendsofsymfony/user-bundle": "*",
-        "sonata-project/admin-bundle": "2.1.x-dev",
+        "sonata-project/admin-bundle": "dev-master",
         "sonata-project/doctrine-orm-admin-bundle": "*",
         "ddeboer/guzzle-bundle": "dev-master",
         "incenteev/composer-parameter-handler": "1.0.*"
