@@ -33,6 +33,11 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin
 
+# REST API
+students:
+    type:     rest
+    resource: UCP\AbsenceBundle\Controller\StudentController
+    prefix:   /api
 
 ucp_absence_management:
     resource: "@UCPAbsenceBundle/Controller/"

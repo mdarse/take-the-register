@@ -3,6 +3,8 @@
 namespace UCP\AbsenceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\SerializerBundle\Annotation\Exclude;
+use JMS\SerializerBundle\Annotation\SerializedName;
 
 /**
  * @ORM\Entity
@@ -13,6 +15,7 @@ class Company
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Exclude
      */
     private $id;
 
@@ -23,11 +26,13 @@ class Company
 
     /**
      * @ORM\Column(type="string", length=80, nullable=true)
+     * @SerializedName("tutorName")
      */
     private $tutorName;
 
     /**
      * @ORM\Column(type="string", length=254, nullable=true)
+     * @SerializedName("tutorEmail")
      */
     private $tutorEmail;
 
@@ -56,6 +61,7 @@ class Company
      * @var string $postalCode
      *
      * @ORM\Column(type="string", length=5, nullable=true)
+     * @SerializedName("postalCode")
      */
     private $postalCode;
 
