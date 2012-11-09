@@ -27,8 +27,19 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [FOSUserBundle]
+    bundles:
+        - UCPAbsenceBundle
+        - FOSUserBundle
     java: %java_bin%
+    assets:
+        zepto:
+            inputs: @UCPAbsenceBundle/Resources/public/js/zepto.js
+            filters: ?closure
+        backbone:
+            inputs:
+                - @UCPAbsenceBundle/Resources/public/js/underscore.js
+                - @UCPAbsenceBundle/Resources/public/js/backbone.js
+            filters: ?closure
     filters:
         cssrewrite: ~
         closure:

@@ -27,6 +27,10 @@
 
         {% block body %}{% endblock %}
         {% block content %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {% javascripts "@zepto" "@backbone" %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
     </body>
 </html>
