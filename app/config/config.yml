@@ -31,14 +31,22 @@ assetic:
         - UCPAbsenceBundle
         - FOSUserBundle
     java: %java_bin%
+    node: %node_bin%
     assets:
         zepto:
             inputs: @UCPAbsenceBundle/Resources/public/js/zepto.js
             filters: ?closure
         backbone:
-            inputs:
-                - @UCPAbsenceBundle/Resources/public/js/underscore.js
-                - @UCPAbsenceBundle/Resources/public/js/backbone.js
+            inputs: @UCPAbsenceBundle/Resources/public/js/backbone.js
+            filters: ?closure
+        underscore:
+            inputs: @UCPAbsenceBundle/Resources/public/js/underscore.js
+            filters: ?closure
+        handlebars:
+            inputs: @UCPAbsenceBundle/Resources/public/js/handlebars.js
+            filters: ?closure
+        handlebars_runtime:
+            inputs: @UCPAbsenceBundle/Resources/public/js/handlebars.runtime.js
             filters: ?closure
     filters:
         cssrewrite: ~
@@ -47,8 +55,11 @@ assetic:
         yui_css:
             jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar
         less:
-            node: %node_bin%
             node_paths: [ %node_path% ]
+            apply_to: "\.less$"
+        handlebars:
+            bin: %handlebars_bin%
+            apply_to: "\.handlebars$"
 
 # Doctrine Configuration
 doctrine:
