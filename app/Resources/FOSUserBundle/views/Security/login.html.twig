@@ -3,10 +3,15 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Connexion — Take the Register{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        {% stylesheets '@UCPAbsenceBundle/Resources/public/css/login.less' filter='less,?yui_css' %}
-            <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,700,800,600">
+            {% stylesheets 
+                '@UCPAbsenceBundle/Resources/public/css/normalize.css'
+                '@UCPAbsenceBundle/Resources/public/css/login.less'
+                filter='?yui_css' %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
     </head>
     <body>
         {% for key, message in app.session.getFlashes() %}
@@ -15,18 +20,19 @@
         </div>
         {% endfor %}
 
-        {% if error %}
-            <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
-        {% endif %}
-
         <form class="login-box" action="{{ path("fos_user_security_check") }}" method="post">
+            <h1>Take the Register</h1>
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
+            {% if error %}
+                <div class="error">{{ error|trans({}, 'FOSUserBundle') }}</div>
+            {% endif %}
+
             <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
-            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+            <input type="text" id="username" name="_username" placeholder="Identifiant" value="{{ last_username }}" required="required" />
 
             <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
-            <input type="password" id="password" name="_password" required="required" />
+            <input type="password" id="password" name="_password" placeholder="Mot de passe" required="required" />
 
             <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
             <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
