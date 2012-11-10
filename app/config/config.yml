@@ -34,20 +34,25 @@ assetic:
     node: %node_bin%
     assets:
         zepto:
-            inputs: @UCPAbsenceBundle/Resources/public/js/zepto.js
+            inputs: @UCPAbsenceBundle/Resources/public/js/lib/zepto.js
             filters: ?closure
+            output: js/*.js
         backbone:
-            inputs: @UCPAbsenceBundle/Resources/public/js/backbone.js
+            inputs: @UCPAbsenceBundle/Resources/public/js/lib/backbone.js
             filters: ?closure
+            output: js/*.js
         underscore:
-            inputs: @UCPAbsenceBundle/Resources/public/js/underscore.js
+            inputs: @UCPAbsenceBundle/Resources/public/js/lib/underscore.js
             filters: ?closure
+            output: js/*.js
         handlebars:
-            inputs: @UCPAbsenceBundle/Resources/public/js/handlebars.js
+            inputs: @UCPAbsenceBundle/Resources/public/js/lib/handlebars.js
             filters: ?closure
+            output: js/*.js
         handlebars_runtime:
-            inputs: @UCPAbsenceBundle/Resources/public/js/handlebars.runtime.js
+            inputs: @UCPAbsenceBundle/Resources/public/js/lib/handlebars.runtime.js
             filters: ?closure
+            output: js/*.js
     filters:
         cssrewrite: ~
         closure:
