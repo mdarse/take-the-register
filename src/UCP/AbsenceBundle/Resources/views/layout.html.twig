@@ -1,13 +1,21 @@
+{% set navigation_bar = {
+    'lesson': 'Planning',
+    'student_admin_list': 'Étudiants',
+    'user_admin_list': 'Équipe pédogogique',
+    'sync_index': 'Paramètres'
+} %}
+{% set active_page = active_page|default('lesson') %}
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Take the Register{% endblock %}</title>
+
         {% block stylesheets %}
-            <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,700,800,600">
-            {% stylesheets '@UCPAbsenceBundle/Resources/public/css/main.less' filter='?yui_css' %}
-                <link rel="stylesheet" href="{{ asset_url }}" />
-            {% endstylesheets %}
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,700,800,600">
+        {% stylesheets '@UCPAbsenceBundle/Resources/public/css/main.less' filter='?yui_css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
         {% endblock %}
     </head>
     <body>
@@ -28,13 +36,14 @@
         </div>
         {% endfor %}
 
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="{{ path('lesson') }}">Planning</a></li>
-            <li><a href="{{ path('student_admin_list') }}">Étudiants</a></li>
-            <li><a>Groupes</a></li>
-            <li><a href="{{ path('user_admin_list') }}">Équipe pédogogique</a></li>
-            <li><a href="{{ path('sync_index') }}">Paramètres</a></li>
+        {% block navigation %}
+        <ul id="navigation" class="nav nav-tabs">
+            {% for route, item in navigation_bar %}
+            <li{% if route == active_page %} class="active"{% endif%}>
+            <a href="{{ path(route) }}">{{ item }}</a></li>
+            {% endfor %}
         </ul>
+        {% endblock %}
 
         {% block body %}{% endblock %}
         {% block content %}{% endblock %}
