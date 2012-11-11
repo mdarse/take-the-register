@@ -1,10 +1,18 @@
+{% set active_page = 'student_admin_list' %}
 {% extends 'UCPAbsenceBundle::layout.html.twig' %}
 
-{% block body %}
-<h1>Dashboard</h1>
-
-<a href="{{ path('lesson') }}">Prochains cours</a> |
-<a href="{{ path('student_admin_list') }}">Gérer les étudiants</a> |
-<a href="{{ path('user_admin_list') }}">Gérer l'équipe pédogogique</a> |
-<a href="{{ path('sync_index') }}">Configurer la synchronisation Google calendar</a>
+{% block content %}
+<div id="content">No content</div>
 {% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{% javascripts
+    "@UCPAbsenceBundle/Resources/public/js/app.js"
+    "@UCPAbsenceBundle/Resources/public/js/app/*.js"
+    "@UCPAbsenceBundle/Resources/public/js/app/views/*.js"
+    "@UCPAbsenceBundle/Resources/public/template/*.handlebars"
+    "@UCPAbsenceBundle/Resources/public/js/main.js"
+    filter="?closure" %}
+    <script src="{{ asset_url }}"></script>{% endjavascripts %}
+{% endblock %} 
