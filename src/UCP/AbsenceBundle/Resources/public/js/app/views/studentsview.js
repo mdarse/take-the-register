@@ -10,7 +10,7 @@ App.Views.StudentsView = Backbone.View.extend({
     },
 
     events: {
-        "click ul.student-list a": "clikedStudent"
+        "click ul.student-list a": "clickedStudent"
     },
 
     render: function() {
@@ -23,9 +23,12 @@ App.Views.StudentsView = Backbone.View.extend({
         return this;
     },
 
-    clikedStudent: function(e) {
+    clickedStudent: function(e) {
         e.preventDefault();
-        var id = $(e.currentTarget).data("id");
+        this.$('ul.student-list li.active').removeClass('active');
+        var target = $(e.currentTarget);
+        target.closest('li').addClass('active');
+        var id = target.data("id");
         app.navigate("students/" + id);
         this.show(id);
     },

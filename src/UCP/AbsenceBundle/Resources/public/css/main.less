@@ -70,31 +70,122 @@ body {
 
 @borderColor: #ddd;
 ul.student-list {
-    .column(4);
+    .column(3);
     height: 300px;
     list-style: none;
     box-sizing: border-box;
     border: 1px solid @borderColor;
     font-size: 1.3em;
     font-weight: lighter;
+    margin-bottom: 20px;
 
     a {
         padding: 0 10px;
         display: block;
         border-bottom: 1px solid @borderColor;
         line-height: 2;
-
-        &:hover {
-            background-color: @borderColor;
-            text-decoration: none;
-        }
+    }
+    li.active a,
+    a:hover {
+        background-color: @borderColor;
+        text-decoration: none;
     }
 }
 .student-details {
-    .column(8);
+    .column(7);
+    .push(1);
     // box-sizing: border-box;
     // border: 1px solid @borderColor;
     // .border-radius(3px);
-    .box-shadow(0 0 10px 0 rgba(0,0,0,.2));
+    // .box-shadow(0 0 10px 0 rgba(0,0,0,.2));
+    margin-bottom: 20px;
 
+    .flip-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0 10px;
+        line-height: 2;
+    }
+    .picture {
+        display: block;
+        margin: 20px auto;
+    }
+    .name {
+        margin: 16px 0;
+        font-weight: lighter;
+        font-size: 2em;
+        text-align: center;
+    }
+    dl {
+        margin-left: 20%;
+        margin-right: 10%;
+    }
+    .company {
+        .label {
+            font-size: 1.3em;
+            margin: 0 10%;
+            color: #ccc;
+            border-bottom: 1px solid @borderColor;
+        }
+        .name {
+            font-size: 1.5em;
+        }
+    }
+
+    // Flip 3D effect
+    position: relative;
+    height: 500px;
+    -webkit-perspective: 1500px;
+    -moz-perspective: 1500px;
+    -o-perspective: 1500px;
+    perspective: 1500px;
+    &.flip {
+        .front {
+            -webkit-transform: rotateY(-180deg);
+            -moz-transform: rotateY(-180deg);
+            -o-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
+        }
+        .back {
+            -webkit-transform: rotateY(0);
+            -moz-transform: rotateY(0);
+            -o-transform: rotateY(0);
+            transform: rotateY(0);
+        }
+    }
+    .front,
+    .back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: inherit;
+        height: inherit;
+
+        background-color: white;
+        .box-shadow(0 0 10px 0 rgba(0,0,0,.2));
+
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -o-transition: 0.5s;
+        transition: 0.5s;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+        
+    }
+    .front {
+        z-index: 2;
+    }
+    .back {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
 }

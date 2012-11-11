@@ -1,2 +1,54 @@
-<h1>Student details</h1>
-{{firstname}} {{lastname}}
+<div class="front">
+    <a class="flip-button" href="#">Voir les absences</a>
+
+    <img class="picture" src="http://placehold.it/160x160" />
+    <div class="name">{{firstname}} {{lastname}}</div>
+
+    <dl class="dl-horizontal">
+        {{#if ine}}
+        <dt>Numéro d'étudiant</dt>
+        <dd>{{ine}}</dd>
+        {{/if}}
+
+        {{#if email}}
+        <dt>Adresse email</dt>
+        <dd>{{email}}</dd>
+        {{/if}}
+
+        {{#if phone}}
+        <dt>Téléphone</dt>
+        <dd>{{phone}}</dd>
+        {{/if}}
+    </dl>
+
+    {{#company}}
+    <div class="company">
+        <div class="label">Entreprise</div>
+        <div class="name">{{name}}</div>
+        <dl class="dl-horizontal">
+            {{#if tutorName}}
+            <dt>Tuteur</dt>
+            <dd>{{tutorName}}</dd>
+            {{/if}}
+
+            {{#if tutorEmail}}
+            <dt>Adresse email</dt>
+            <dd>{{tutorEmail}}</dd>
+            {{/if}}
+
+            {{#if phone}}
+            <dt>Téléphone</dt>
+            <dd>{{phone}}</dd>
+            {{/if}}
+
+            <dt>Adresse</dt>
+            <dd>{{address}}<br/>{{postalCode}} {{city}}</dd>
+        </dl>
+    </div>
+    {{/company}}
+</div>
+
+<div class="back">
+    <a class="flip-button" href="#">Voir le profil</a>
+    Absences de {{firstname}} {{lastname}}
+</div>
