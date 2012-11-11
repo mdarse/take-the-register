@@ -9,7 +9,6 @@ App.Router = Backbone.Router.extend({
     },
 
     initialize: function() {
-        console.log("Router:initialize");
         this.$content = $('#content');
         // TODO Make a headerView to handle navigation
     },
@@ -21,6 +20,8 @@ App.Router = Backbone.Router.extend({
     students: function() {
         if (!this.studentsView) {
             this.makeStudentsView();
+        } else {
+            this.studentsView.reset();
         }
         this.$content.html(this.studentsView.el);
         // TODO this.headerView.select('students');

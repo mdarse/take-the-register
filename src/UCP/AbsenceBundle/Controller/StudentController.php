@@ -21,10 +21,18 @@ class StudentController extends FOSRestController
 
         $students = $em->getRepository('UCPAbsenceBundle:Student')->findAll();
 
-        $view = $this->view($students, 200)
-            ->setTemplate("MyBundle:Users:getUsers.html.twig")
-            ->setTemplateVar('students')
-        ;
+        $view = $this->view($students, 200);
+
+        return $this->handleView($view);
+    }
+
+    /**
+     * @param  Student $student [description]
+     * @return [type]           [description]
+     */
+    public function getStudentAction(Student $student)
+    {
+        $view = $this->view($student, 200);
 
         return $this->handleView($view);
     }
