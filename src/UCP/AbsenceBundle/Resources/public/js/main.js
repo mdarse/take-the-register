@@ -1,4 +1,7 @@
 $(function() {
     app = new App.Router();
-    Backbone.history.start();
+    Backbone.history.start({
+        pushState: false,
+        root: Routing.getBaseUrl() + '/'
+    });
 });

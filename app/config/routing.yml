@@ -3,6 +3,7 @@
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #    prefix:   /_internal
 
+# FOSUserBundle
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
@@ -22,6 +23,9 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
 
+# FOSJsRoutingBundle
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
 # SonataAdminBundle
 admin:
@@ -38,6 +42,8 @@ students:
     type:     rest
     resource: UCP\AbsenceBundle\Controller\StudentController
     prefix:   /api
+    options:
+        expose: true
 
 ucp_absence_management:
     resource: "@UCPAbsenceBundle/Controller/"

@@ -33,6 +33,10 @@ assetic:
     java: %java_bin%
     node: %node_bin%
     assets:
+        js_routing:
+            inputs: @FOSJsRoutingBundle/Resources/public/js/router.js
+            filters: ?closure
+            output: js/*.js
         zepto:
             inputs: @UCPAbsenceBundle/Resources/public/js/lib/zepto.js
             filters: ?closure

@@ -1,5 +1,5 @@
 {
-    "hash": "fe5bad82397e3c88c77a27c364726ad7",
+    "hash": "fd15728c535905fa0a76019cb760abe2",
     "packages": [
         {
             "name": "ddeboer/guzzle-bundle",
@@ -21,6 +21,7 @@
                 "symfony/symfony": ">=2.0,<2.2",
                 "guzzle/guzzle": "*"
             },
+            "time": "1341990130",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -59,8 +60,7 @@
                 "client",
                 "web service",
                 "Guzzle"
-            ],
-            "time": "1341990130"
+            ]
         },
         {
             "name": "doctrine/common",
@@ -330,6 +330,59 @@
             "time": "1348121015"
         },
         {
+            "name": "friendsofsymfony/jsrouting-bundle",
+            "version": "dev-master",
+            "target-dir": "FOS/JsRoutingBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfSymfony/FOSJsRoutingBundle",
+                "reference": "9377c75e9b2fd0d0f0433414ab115d94d69cf25b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/FriendsOfSymfony/FOSJsRoutingBundle/archive/9377c75e9b2fd0d0f0433414ab115d94d69cf25b.zip",
+                "reference": "9377c75e9b2fd0d0f0433414ab115d94d69cf25b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": ">=2.0,<2.3-dev",
+                "symfony/serializer": ">=2.0,<2.3-dev"
+            },
+            "time": "1351727793",
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "FOS\\JsRoutingBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com",
+                    "homepage": "http://www.willdurand.fr"
+                },
+                {
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/friendsofsymfony/FOSJsRoutingBundle/contributors"
+                }
+            ],
+            "description": "Symfony FOSJsRoutingBundle",
+            "homepage": "http://friendsofsymfony.github.com",
+            "keywords": [
+                "Js Routing"
+            ]
+        },
+        {
             "name": "friendsofsymfony/rest",
             "version": "dev-master",
             "target-dir": "FOS/Rest",
@@ -348,7 +401,6 @@
                 "php": ">=5.3.2",
                 "symfony/http-foundation": ">=2.0,<2.3-dev"
             },
-            "time": "1347135166",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -378,7 +430,8 @@
             "homepage": "http://friendsofsymfony.github.com",
             "keywords": [
                 "rest"
-            ]
+            ],
+            "time": "1347135166"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -410,7 +463,6 @@
             "suggest": {
                 "sensio/framework-extra-bundle": "Add support for route annotations"
             },
-            "time": "1352307483",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -445,7 +497,8 @@
             "homepage": "http://friendsofsymfony.github.com",
             "keywords": [
                 "rest"
-            ]
+            ],
+            "time": "1352307483"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -938,7 +991,6 @@
             "suggest": {
                 "symfony/framework-bundle": "2.*"
             },
-            "time": "1351804432",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -970,7 +1022,8 @@
                 "serialization",
                 "deserialization",
                 "jaxb"
-            ]
+            ],
+            "time": "1351804432"
         },
         {
             "name": "knplabs/knp-menu",
@@ -999,6 +1052,7 @@
                 "silex/silex": "for the integration with your silex application",
                 "twig/twig": "for the TwigRenderer and the integration with your templates"
             },
+            "time": "1339345240",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1033,8 +1087,7 @@
             "keywords": [
                 "menu",
                 "tree"
-            ],
-            "time": "1339345240"
+            ]
         },
         {
             "name": "knplabs/knp-menu-bundle",
@@ -1384,7 +1437,6 @@
                 "sonata-project/doctrine-orm-admin-bundle": "dev-master",
                 "sonata-project/intl-bundle": "dev-master"
             },
-            "time": "1352215359",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1413,7 +1465,8 @@
                 "Admin Generator",
                 "sonata",
                 "bootstrap"
-            ]
+            ],
+            "time": "1352215359"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -1426,7 +1479,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sonata-project/SonataBlockBundle/archive/1f86cc605ada67227829d47b4a512c411b31225b.zip",
+                "url": "https://github.com/sonata-project/SonataBlockBundle/zipball/1f86cc605ada67227829d47b4a512c411b31225b",
                 "reference": "1f86cc605ada67227829d47b4a512c411b31225b",
                 "shasum": ""
             },
@@ -1482,7 +1535,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/archive/9144e2d6f2e3a77c427ded54741c5f7974b070e2.zip",
+                "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/zipball/9144e2d6f2e3a77c427ded54741c5f7974b070e2",
                 "reference": "9144e2d6f2e3a77c427ded54741c5f7974b070e2",
                 "shasum": ""
             },
@@ -2039,6 +2092,7 @@
     "stability-flags": {
         "sonata-project/admin-bundle": 20,
         "ddeboer/guzzle-bundle": 20,
-        "friendsofsymfony/rest-bundle": 20
+        "friendsofsymfony/rest-bundle": 20,
+        "friendsofsymfony/jsrouting-bundle": 20
     }
 }

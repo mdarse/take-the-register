@@ -23,7 +23,8 @@
         "sonata-project/doctrine-orm-admin-bundle": "*",
         "ddeboer/guzzle-bundle": "dev-master",
         "incenteev/composer-parameter-handler": "1.0.*",
-        "friendsofsymfony/rest-bundle": "0.10.x-dev"
+        "friendsofsymfony/rest-bundle": "0.10.x-dev",
+        "friendsofsymfony/jsrouting-bundle": "1.0.x-dev"
     },
     "scripts": {
         "post-install-cmd": [
