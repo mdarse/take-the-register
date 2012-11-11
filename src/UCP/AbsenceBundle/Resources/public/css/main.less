@@ -63,3 +63,30 @@ body {
         color: white;
     }
 }
+
+#content {
+    .clearfix;
+}
+
+@borderColor: #ddd;
+ul.student-list {
+    .column(4);
+    height: 300px;
+    list-style: none;
+    box-sizing: border-box;
+    border: 1px solid @borderColor;
+    font-size: 1.3em;
+    font-weight: lighter;
+
+    a {
+        padding: 0 10px;
+        display: block;
+        border-bottom: 1px solid @borderColor;
+        line-height: 2;
+
+        &:hover {
+            background-color: @borderColor;
+            text-decoration: none;
+        }
+    }
+}

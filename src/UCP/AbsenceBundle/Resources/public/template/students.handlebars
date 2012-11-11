@@ -1,1 +1,6 @@
-Hello students
+<ul class="student-list">
+{{#students}}
+<li><a href="#" data-id="{{id}}">{{firstname}} {{lastname}}</a></li>
+{{/students}}
+</ul>
+<div class="student-details">Cliquez sur un étudiant</div>

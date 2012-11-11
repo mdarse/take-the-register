@@ -19,23 +19,30 @@ App.Router = Backbone.Router.extend({
     },
 
     students: function() {
-        this.makeStudentsView();
-        // this.studentsView.reset();
+        if (!this.studentsView) {
+            this.makeStudentsView();
+        }
         this.$content.html(this.studentsView.el);
         // TODO this.headerView.select('students');
     },
 
     studentDetails: function(id) {
-        this.makeStudentsView();
+        if (!this.studentsView) {
+            this.makeStudentsView();
+        }
         this.studentsView.show(id);
         this.$content.html(this.studentsView.el);
     },
 
     makeStudentsView: function() {
-        if (!this.studentsView) {
-            this.studentsView = new App.Views.StudentsView();
-            this.studentsView.render();
-        }
+        var studentCollection = new App.Models.StudentCollection();
+        this.studentsView = new App.Views.StudentsView({ collection: studentCollection});
+        var router = this;
+        studentCollection.fetch({
+            success: function() {
+                router.studentsView.render();
+            }
+        });
     },
 
     planning: function() {},
