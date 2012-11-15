@@ -24,7 +24,8 @@
         "ddeboer/guzzle-bundle": "dev-master",
         "incenteev/composer-parameter-handler": "1.0.*",
         "friendsofsymfony/rest-bundle": "0.10.x-dev",
-        "friendsofsymfony/jsrouting-bundle": "1.0.x-dev"
+        "friendsofsymfony/jsrouting-bundle": "1.0.x-dev",
+        "nelmio/api-doc-bundle": "2.0.*"
     },
     "scripts": {
         "post-install-cmd": [

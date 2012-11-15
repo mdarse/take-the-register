@@ -9,12 +9,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use UCP\AbsenceBundle\Entity\Student;
 use UCP\AbsenceBundle\Form\StudentType;
 
 class StudentController extends FOSRestController
 {
+    /**
+     * Retrieve a collection of all students
+     *
+     * @ApiDoc()
+     */
     public function getStudentsAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -27,8 +33,9 @@ class StudentController extends FOSRestController
     }
 
     /**
-     * @param  Student $student [description]
-     * @return [type]           [description]
+     * Retrieve a single student
+     *
+     * @ApiDoc()
      */
     public function getStudentAction(Student $student)
     {

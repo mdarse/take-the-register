@@ -107,6 +107,10 @@ fos_rest:
             json: true
         templating_formats: ~
 
+# NelmioApiDocBundle Configuration
+nelmio_api_doc:
+    name: Take the Register API Documentation
+
 # SonataBlockBundle (SonataAdminBundle dependency)
 sonata_block:
     default_contexts: [cms]

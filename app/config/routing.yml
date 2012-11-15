@@ -37,6 +37,11 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin
 
+# REST API documentation
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
 # REST API
 students:
     type:     rest
