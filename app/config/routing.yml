@@ -45,6 +45,14 @@ students:
     options:
         expose: true
 
+lessons:
+    type:     rest
+    resource: UCP\AbsenceBundle\Controller\LessonController
+    prefix:   /api
+    options:
+        expose: true
+
+
 ucp_absence_management:
     resource: "@UCPAbsenceBundle/Controller/"
     type:     annotation
