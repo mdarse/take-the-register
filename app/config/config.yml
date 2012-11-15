@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: assets.yml }
     - { resource: @UCPAbsenceBundle/Resources/config/services.xml }
 
 framework:
@@ -32,31 +33,6 @@ assetic:
         - FOSUserBundle
     java: %java_bin%
     node: %node_bin%
-    assets:
-        js_routing:
-            inputs: @FOSJsRoutingBundle/Resources/public/js/router.js
-            filters: ?closure
-            output: js/*.js
-        zepto:
-            inputs: @UCPAbsenceBundle/Resources/public/js/lib/zepto.js
-            filters: ?closure
-            output: js/*.js
-        backbone:
-            inputs: @UCPAbsenceBundle/Resources/public/js/lib/backbone.js
-            filters: ?closure
-            output: js/*.js
-        underscore:
-            inputs: @UCPAbsenceBundle/Resources/public/js/lib/underscore.js
-            filters: ?closure
-            output: js/*.js
-        handlebars:
-            inputs: @UCPAbsenceBundle/Resources/public/js/lib/handlebars.js
-            filters: ?closure
-            output: js/*.js
-        handlebars_runtime:
-            inputs: @UCPAbsenceBundle/Resources/public/js/lib/handlebars.runtime.js
-            filters: ?closure
-            output: js/*.js
     filters:
         cssrewrite: ~
         closure:

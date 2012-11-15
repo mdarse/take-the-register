@@ -1,0 +1,36 @@
+assetic:
+    assets:
+        js_routing:
+            inputs: @FOSJsRoutingBundle/Resources/public/js/router.js
+            filters: ?closure
+            output: js/*.js
+        zepto:
+            inputs: @UCPAbsenceBundle/Resources/public/js/lib/zepto.js
+            filters: ?closure
+            output: js/*.js
+        backbone:
+            inputs: @UCPAbsenceBundle/Resources/public/js/lib/backbone.js
+            filters: ?closure
+            output: js/*.js
+        underscore:
+            inputs: @UCPAbsenceBundle/Resources/public/js/lib/underscore.js
+            filters: ?closure
+            output: js/*.js
+        handlebars:
+            inputs: @UCPAbsenceBundle/Resources/public/js/lib/handlebars.js
+            filters: ?closure
+            output: js/*.js
+        handlebars_runtime:
+            inputs: @UCPAbsenceBundle/Resources/public/js/lib/handlebars.runtime.js
+            filters: ?closure
+            output: js/*.js
+        handlebars_helper_dateformat:
+            inputs: @UCPAbsenceBundle/Resources/public/js/lib/handlebars/dateformat.js
+            filters: ?closure
+            output: js/*.js
+        moment:
+            inputs:
+                - @UCPAbsenceBundle/Resources/public/js/lib/moment.js
+                - @UCPAbsenceBundle/Resources/public/js/lib/moment.lang.fr.js
+            filters: ?closure
+            output: js/*.js
