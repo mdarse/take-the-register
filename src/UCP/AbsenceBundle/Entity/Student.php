@@ -4,8 +4,7 @@ namespace UCP\AbsenceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use JMS\SerializerBundle\Annotation\Exclude;
-use JMS\SerializerBundle\Annotation\Groups;
+use JMS\SerializerBundle\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="UCP\AbsenceBundle\Repository\StudentRepository")
@@ -46,7 +45,7 @@ class Student
 
     /**
      * @ORM\Column(type="string", nullable=true)
-     * @Exclude
+     * @Serializer\Exclude
      */
     private $picturePath;
 
@@ -57,7 +56,7 @@ class Student
 
     /**
      * @ORM\OneToMany(targetEntity="Absence", mappedBy="student")
-     * @Exclude
+     * @Serializer\Exclude
      */
     private $absences;
 

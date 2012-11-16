@@ -4,7 +4,7 @@ namespace UCP\AbsenceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use JMS\SerializerBundle\Annotation\Exclude;
+use JMS\SerializerBundle\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="UCP\AbsenceBundle\Repository\LessonRepository")
@@ -19,7 +19,6 @@ class Lesson
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
-     * @Exclude
      */
     private $professor;
 
@@ -40,7 +39,7 @@ class Lesson
 
     /**
      * @ORM\OneToMany(targetEntity="Absence", mappedBy="lesson")
-     * @Exclude
+     * @Serializer\Type("ArrayCollection")
      */
     private $absences;
     
