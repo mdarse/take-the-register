@@ -56,7 +56,7 @@ class Student
 
     /**
      * @ORM\OneToMany(targetEntity="Absence", mappedBy="student")
-     * @Serializer\Exclude
+     * @Serializer\Type("ArrayCollection")
      */
     private $absences;
 
