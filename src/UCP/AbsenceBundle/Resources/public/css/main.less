@@ -78,12 +78,16 @@ ul.student-list {
     font-size: 1.3em;
     font-weight: lighter;
     margin-bottom: 20px;
+    overflow-y: auto;
 
     a {
         padding: 0 10px;
         display: block;
         border-bottom: 1px solid @borderColor;
         line-height: 2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     li.active a,
     a:hover {
@@ -94,6 +98,7 @@ ul.student-list {
 .student-details {
     .column(7);
     .push(1);
+    min-height: 400px;
     // box-sizing: border-box;
     // border: 1px solid @borderColor;
     // .border-radius(3px);
@@ -135,7 +140,6 @@ ul.student-list {
 
     // Flip 3D effect
     position: relative;
-    height: 500px;
     -webkit-perspective: 1500px;
     -moz-perspective: 1500px;
     -o-perspective: 1500px;
@@ -161,6 +165,7 @@ ul.student-list {
         left: 0;
         width: inherit;
         height: inherit;
+        min-height: inherit;
 
         background-color: white;
         .box-shadow(0 0 10px 0 rgba(0,0,0,.2));
