@@ -7,6 +7,7 @@ app/logs/*
 app/config/parameters.yml
 build/
 vendor
+node_modules
 composer.phar
 
 # Mac OS X
