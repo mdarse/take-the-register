@@ -17,7 +17,7 @@ class LessonController extends FOSRestController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $lessons = $em->getRepository('UCPAbsenceBundle:Lesson')->findAll();
+        $lessons = $em->getRepository('UCPAbsenceBundle:Lesson')->findUpcomingLessons(10);
 
         $view = $this->view($lessons, 200);
 

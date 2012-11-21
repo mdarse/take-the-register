@@ -2,6 +2,7 @@ App.Router = Backbone.Router.extend({
     routes: {
         "": "home",
         "planning": "planning",
+        "planning/:id": "lesson",
         "students": "students",
         "students/:id": "studentDetails",
         "groups": "groups",
@@ -27,6 +28,19 @@ App.Router = Backbone.Router.extend({
             lessonCollection.fetch();
         }
         this.$content.html(this.planningView.el);
+    },
+
+    lesson: function(id) {
+        if (!this.lessonView) {
+            var lesson = new App.Models.Lesson({ id: id });
+            this.lessonView = new App.Views.LessonView({
+                studentCollection: this.studentCollection,
+                model: lesson
+            });
+            lesson.fetch();
+            this.studentCollection.fetch();
+        }
+        this.$content.html(this.lessonView.el);
     },
 
     // Students
