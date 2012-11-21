@@ -11,10 +11,11 @@ class StudentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('id', null, array('mapped' => false))
             ->add('firstname')
             ->add('lastname')
             ->add('ine')
-            ->add('email')
+            ->add('email', 'email')
             ->add('phone')
             // ->add('picturePath')
             ->add('company', new CompanyType())
@@ -24,12 +25,13 @@ class StudentType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'UCP\AbsenceBundle\Entity\Student'
+            'data_class' => 'UCP\AbsenceBundle\Entity\Student',
+            'csrf_protection' => false
         ));
     }
 
     public function getName()
     {
-        return 'ucp_absencebundle_studenttype';
+        return '';
     }
 }

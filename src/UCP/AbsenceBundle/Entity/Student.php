@@ -4,6 +4,7 @@ namespace UCP\AbsenceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use JMS\SerializerBundle\Annotation as Serializer;
 
 /**
@@ -20,26 +21,33 @@ class Student
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=11, nullable=true)
+     * @Assert\Regex("/^\d{10}[A-Z]$/")
      */
     private $ine;
 
     /**
      * @ORM\Column(type="string", length=254, nullable=true)
+     * @Assert\Email
      */
     private $email;
 
     /**
+     * International phone number according to ITU-T E.123 & ITU-T E.164
+     * 
      * @ORM\Column(type="string", length=15, nullable=true)
+     * @Assert\Regex("/^\+(?:[0-9] ?){6,14}[0-9]$/")
      */
     private $phone;
 
@@ -57,6 +65,7 @@ class Student
     /**
      * @ORM\OneToMany(targetEntity="Absence", mappedBy="student")
      * @Serializer\Type("ArrayCollection")
+     * @Serializer\Exclude
      */
     private $absences;
 

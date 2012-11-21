@@ -6,6 +6,7 @@ App.Views.StudentDetailsView = Backbone.View.extend({
         this.template = Handlebars.templates.studentdetails;
 
         this.model.on('change', this.render, this);
+        this.model.on('destroy', this.remove, this);
     },
 
     events: {
@@ -13,7 +14,6 @@ App.Views.StudentDetailsView = Backbone.View.extend({
     },
 
     render: function() {
-        console.log("StudentDetailsView:render");
         this.$el.html(this.template(this.model.toJSON()));
         return this;
     },

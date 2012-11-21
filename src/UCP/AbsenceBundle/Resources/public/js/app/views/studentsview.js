@@ -6,7 +6,8 @@ App.Views.StudentsView = Backbone.View.extend({
 
     initialize: function() {
         this.template = Handlebars.templates.students;
-        _.bindAll(this);
+
+        this.collection.on('add change remove reset', this.render, this);
     },
 
     events: {
@@ -14,9 +15,7 @@ App.Views.StudentsView = Backbone.View.extend({
     },
 
     render: function() {
-        console.log("StudentsView:render");
         this.$el.html(this.template({ students: this.collection.toJSON() }));
-        this.emptyDetailsEl = this.$(this.options.detailSelector).get(0);
         if (this.currentDetailView) {
             this.$(this.options.detailSelector).replaceWith(this.currentDetailView.el);
         }
@@ -42,17 +41,18 @@ App.Views.StudentsView = Backbone.View.extend({
         }
         var view = new App.Views.StudentDetailsView({ model: student });
         view.render();
-        this.changeDetailView(view);
+        this.setDetailView(view);
     },
 
     reset: function() {
-        this.changeDetailView(null);
+        this.currentDetailView = null;
+        this.render();
     },
 
-    changeDetailView: function(view) {
+    setDetailView: function(view) {
         this.currentDetailView = view;
-        var el = view ? view.el : this.emptyDetailsEl;
-        this.$(this.options.detailSelector).replaceWith(el);
+        // Bypass this.render() to not re-render sidebar
+        this.$(this.options.detailSelector).replaceWith(view.el);
     }
 
 });

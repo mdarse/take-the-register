@@ -11,6 +11,8 @@ App.Router = Backbone.Router.extend({
     initialize: function() {
         this.$content = $('#content');
         // TODO Make a headerView to handle navigation
+        
+        this.studentCollection = new App.Models.StudentCollection();
     },
 
     home: function home() {
@@ -22,12 +24,7 @@ App.Router = Backbone.Router.extend({
         if (!this.planningView) {
             var lessonCollection = new App.Models.LessonCollection();
             this.planningView = new App.Views.PlanningView({ collection: lessonCollection });
-            var self = this;
-            lessonCollection.fetch({
-                success: function() {
-                    self.planningView.render();
-                }
-            });
+            lessonCollection.fetch();
         }
         this.$content.html(this.planningView.el);
     },
@@ -37,7 +34,7 @@ App.Router = Backbone.Router.extend({
         if (!this.studentsView) {
             this.makeStudentsView();
         } else {
-            // this.studentsView.reset();
+            this.studentsView.reset();
         }
         this.$content.html(this.studentsView.el);
         // TODO this.headerView.select('students');
@@ -52,14 +49,8 @@ App.Router = Backbone.Router.extend({
     },
 
     makeStudentsView: function() {
-        var studentCollection = new App.Models.StudentCollection();
-        this.studentsView = new App.Views.StudentsView({ collection: studentCollection });
-        var self = this;
-        studentCollection.fetch({
-            success: function() {
-                self.studentsView.render();
-            }
-        });
+        this.studentsView = new App.Views.StudentsView({ collection: this.studentCollection });
+        this.studentCollection.fetch();
     },
 
     groups: function() {},
