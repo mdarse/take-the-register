@@ -44,6 +44,22 @@
 @fontWeightExtraBold: 800;
 
 
+// Utilities
+/* apply a natural box layout model to all elements */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/* http://david.latapie.name/blog/localised-quotations/ */
+q:before { content: open-quote; }
+q:after  { content: close-quote; }
+*:lang(de) > * { quotes: "\201E" "\201C"; } /* German */
+*:lang(en) > * { quotes: "\201C" "\201D" "\2018" "\2019"; } /* English */
+*:lang(es) > * { quotes: "\00AB" "\00BB"; } /* Spanish */
+*:lang(fr) > * { quotes: "\00AB\202F" "\202F\00BB" "\201C" "\201D" "\2018" "\2019"; } /* French */
+
+
 //// Layout
 body {
     position: relative;
