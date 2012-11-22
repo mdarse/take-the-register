@@ -256,3 +256,41 @@ ul.student-list {
 	    }
     }
 }
+
+
+// Lesson view (students tiles)
+//@import "student-tile.less"
+
+.tile () {
+    background-color: rgba(255,255,255,0.95);
+    // .border-radius (12px 0);
+    .box-shadow (0 0 8px 0 rgba(0,0,0,0.2));
+}
+
+.student.tile {
+    .column (2);
+    padding: 6px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    .tile ();
+    cursor: pointer;
+
+    img {
+        // .border-radius (8px 0);
+    }
+    .name {
+        margin: 4px 2px 0 2px;
+        font-size: 1.3em;
+        font-weight: @fontWeightBook;
+        line-height: 1.2;
+
+        b {
+            font-weight: @fontWeightNormal;
+        }
+    }
+
+    &.missing {
+        color: white;
+        background-color: rgba(255,0,0,0.75);
+    }
+}

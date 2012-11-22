@@ -11,7 +11,7 @@ App.Views.LessonView = Backbone.View.extend({
     render: function() {
         this.$el.html(this.template({ lesson: this.model.toJSON() }));
         var elements = this.students.map(function(student) {
-            var view = new App.Views.StudentItemView({ model: student });
+            var view = new App.Views.StudentTileView({ model: student });
             return view.render().el;
         });
         this.$el.append(elements);
