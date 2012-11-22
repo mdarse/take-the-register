@@ -9,6 +9,7 @@ use JMS\SerializerBundle\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="UCP\AbsenceBundle\Repository\StudentRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Student
 {
@@ -52,6 +53,11 @@ class Student
     private $phone;
 
     /**
+     * @Assert\File(maxSize="6000000")
+     */
+    public $pictureFile;
+
+    /**
      * @ORM\Column(type="string", nullable=true)
      * @Serializer\Exclude
      */
@@ -75,6 +81,46 @@ class Student
     public function __construct()
     {
         $this->absences = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->pictureFile) {
+            // do whatever you want to generate a unique name
+            $this->picturePath = sha1(uniqid(mt_rand(), true)).'.'.$this->pictureFile->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->pictureFile) {
+            return;
+        }
+
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->pictureFile->move($this->getUploadRootDir(), $this->picturePath);
+
+        unset($this->pictureFile);
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePicturePath()) {
+            unlink($file);
+        }
     }
 
     /**
@@ -223,6 +269,38 @@ class Student
     public function getPicturePath()
     {
         return $this->picturePath;
+    }
+
+    /**
+     * Get absolute picture path
+     * 
+     * @return string
+     */
+    public function getAbsolutePicturePath()
+    {
+        return null === $this->picturePath ? null : $this->getUploadRootDir().'/'.$this->picturePath;
+    }
+
+    /**
+     * Get picture path relative to web root
+     * 
+     * @return string
+     */
+    public function getWebPicturePath()
+    {
+        return null === $this->picturePath ? null : $this->getUploadDir().'/'.$this->picturePath;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+        return 'uploads/students';
     }
 
     /**
