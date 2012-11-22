@@ -1,12 +1,20 @@
 App.Views.PlanningView = Backbone.View.extend({
 
     initialize: function() {
-        this.template = Handlebars.templates.planning;
-        this.collection.on('add change remove reset', this.render, this);
+        this.lessons = this.collection;
+        this.lessons.on('add change remove reset', this.render, this);
     },
 
     render: function() {
-        this.$el.html(this.template({ lessons: this.collection.toJSON() }));
+        var lessons = this.lessons.toArray();
+        for (var i = 0, l = lessons.length; i < l; i++) {
+            var view = new App.Views.PlanningDayView({
+                date: lessons[i].get('start'),
+                lessons: [lessons[i]]
+            });
+            view.render();
+            this.$el.append(view.el);
+        };
         return this;
     }
 
