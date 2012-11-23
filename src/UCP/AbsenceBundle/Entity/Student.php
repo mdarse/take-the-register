@@ -59,7 +59,8 @@ class Student
 
     /**
      * @ORM\Column(type="string", nullable=true)
-     * @Serializer\Exclude
+     * @Serializer\SerializedName("picturePath")
+     * @Serializer\Accessor(getter="getWebPicturePath")
      */
     private $picturePath;
 
