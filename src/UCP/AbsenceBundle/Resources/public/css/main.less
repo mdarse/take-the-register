@@ -47,9 +47,7 @@
 // Utilities
 /* apply a natural box layout model to all elements */
 * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    .box-sizing(border-box);
 }
 /* http://david.latapie.name/blog/localised-quotations/ */
 q:before { content: open-quote; }
@@ -168,22 +166,13 @@ ul.student-list {
 
     // Flip 3D effect
     position: relative;
-    -webkit-perspective: 1500px;
-    -moz-perspective: 1500px;
-    -o-perspective: 1500px;
-    perspective: 1500px;
+    .perspective(1500px);
     &.flip {
         .front {
-            -webkit-transform: rotateY(-180deg);
-            -moz-transform: rotateY(-180deg);
-            -o-transform: rotateY(-180deg);
-            transform: rotateY(-180deg);
+            .rotateY(-180deg);
         }
         .back {
-            -webkit-transform: rotateY(0);
-            -moz-transform: rotateY(0);
-            -o-transform: rotateY(0);
-            transform: rotateY(0);
+            .rotateY(0);
         }
     }
     .front,
@@ -197,29 +186,15 @@ ul.student-list {
 
         background-color: white;
         .box-shadow(0 0 10px 0 rgba(0,0,0,.2));
-
-        -webkit-transition: 0.5s;
-        -moz-transition: 0.5s;
-        -o-transition: 0.5s;
-        transition: 0.5s;
-        -webkit-transform-style: preserve-3d;
-        -moz-transform-style: preserve-3d;
-        -o-transform-style: preserve-3d;
-        transform-style: preserve-3d;
-        -webkit-backface-visibility: hidden;
-        -moz-backface-visibility: hidden;
-        -o-backface-visibility: hidden;
-        backface-visibility: hidden;
-        
+        .transition(0.5s);
+        .transform-style(preserve-3d);
+        .backface-visibility(hidden);
     }
     .front {
         z-index: 2;
     }
     .back {
-        -webkit-transform: rotateY(180deg);
-        -moz-transform: rotateY(180deg);
-        -o-transform: rotateY(180deg);
-        transform: rotateY(180deg);
+        .rotateY(180deg);
     }
 }
 
@@ -258,8 +233,8 @@ ul.student-list {
 }
 
 
-// Lesson view (students tiles)
-//@import "student-tile.less"
+// Lesson details (student tiles)
+//@import "lesson-details.less"
 
 .tile () {
     background-color: rgba(255,255,255,0.95);

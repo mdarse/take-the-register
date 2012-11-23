@@ -277,6 +277,24 @@
        -o-transform: rotate(@degrees);
           transform: rotate(@degrees);
 }
+.rotateX(@degrees) {
+  -webkit-transform: rotateX(@degrees);
+     -moz-transform: rotateX(@degrees);
+       -o-transform: rotateX(@degrees);
+          transform: rotateX(@degrees);
+}
+.rotateY(@degrees) {
+  -webkit-transform: rotateY(@degrees);
+     -moz-transform: rotateY(@degrees);
+       -o-transform: rotateY(@degrees);
+          transform: rotateY(@degrees);
+}
+.rotateZ(@degrees) {
+  -webkit-transform: rotateZ(@degrees);
+     -moz-transform: rotateZ(@degrees);
+       -o-transform: rotateZ(@degrees);
+          transform: rotateZ(@degrees);
+}
 .scale(@ratio) {
   -webkit-transform: scale(@ratio);
      -moz-transform: scale(@ratio);
@@ -304,6 +322,18 @@
      -moz-transform: translate3d(@x, @y, @z);
        -o-transform: translate3d(@x, @y, @z);
           transform: translate3d(@x, @y, @z);
+}
+.transform-style(@transform-style) {
+  -webkit-transform-style: @transform-style;
+     -moz-transform-style: @transform-style;
+       -o-transform-style: @transform-style;
+          transform-style: @transform-style;
+}
+.perspective(@perspective) {
+  -webkit-perspective: @perspective;
+     -moz-perspective: @perspective;
+       -o-perspective: @perspective;
+          perspective: @perspective;
 }
 
 // Backface visibility
