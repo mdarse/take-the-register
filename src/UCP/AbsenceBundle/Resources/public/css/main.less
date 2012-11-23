@@ -168,20 +168,20 @@ ul.student-list {
     position: relative;
     .perspective(1500px);
     &.flip {
-        .front {
+        .profile {
             .rotateY(-180deg);
         }
-        .back {
+        .absences {
             .rotateY(0);
         }
     }
-    .front,
-    .back {
+    .profile,
+    .absences {
         position: absolute;
         top: 0;
         left: 0;
         width: inherit;
-        height: inherit;
+        // height: inherit;
         min-height: inherit;
 
         background-color: white;
@@ -190,10 +190,10 @@ ul.student-list {
         .transform-style(preserve-3d);
         .backface-visibility(hidden);
     }
-    .front {
+    .profile {
         z-index: 2;
     }
-    .back {
+    .absences {
         .rotateY(180deg);
     }
 }
