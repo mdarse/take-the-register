@@ -1,5 +1,8 @@
 App.Views.PlanningLessonView = Backbone.View.extend({
 	
+	tagName: 'article',
+	className: 'lesson',
+	
 	initialize: function() {
         this.template = Handlebars.templates['planning-lesson'];
     },

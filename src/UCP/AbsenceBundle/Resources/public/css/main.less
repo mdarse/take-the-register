@@ -34,7 +34,7 @@
 
 
 // Color code
-@color-lesson: white;
+@lessonBgColor: rgba(250,250,250,0.95); 
 @vividColor: #6F1281;
 
 // Font weigths
@@ -241,40 +241,72 @@ ul.student-list {
 
 // Import less lesson
 //@import "lesson.less";
-
-.date-header {
-    clear: both;
-}
-
-.lesson {
-    .column(6);
-    height: 100px;
-    margin-bottom: 20px;
-    background-color: rgba(255,255,255,0.95);
-    .border-radius(3px);
-    .box-shadow(1px 1px 5px 0px rgba(0, 0, 0, 0.2));
-    
-    .lesson-row {
-	    .row(6);
-
-	    .date,
-	    .professor,
-	    .label,
-	    .group {
-	    	.column(3,6);
-	    }
+.planning .day {
+	
+	.date-header {
+	    clear: both;
+	    color: #8b8b8b;
+	    font-size: 1.4em;
+	    font-weight: @fontWeightBook;
+	    line-height: 2;
+	    margin: 0 20px;
+	    text-transform: capitalize;
+	}
+	
+	.lesson {
+	    .column(6);
+	    height: 100px;
+	    margin-bottom: 20px;
+	    background-color: @lessonBgColor;
+	    .border-radius(3px);
+	    .box-shadow(1px 1px 5px 0px rgba(0, 0, 0, 0.2));
 	    
-	    .date {
-		    padding: 10px 0px 0px 10px;
-		    font-size: 2em;
-
+	    .lesson-row {
+		    .row(6);
+	
+		    .date,
+		    .professor,
+		    .label,
+		    .group {
+		    	.column(3,6);
+		    }
+		    
+		    .date,
+		    .professor {
+			    height: 50px;
+		    }
+		    
+		    .professor,
+		    .group {
+			    margin-left: -15px;
+			    text-align: right;
+		    }
+		    
+		    .date {
+			    padding: 10px 0px 0px 10px;
+			    font-size: 2em;
+		    }
+		    
+		    .professor {
+			    margin-top: 10px;
+		    }
+		    
+		    .label {
+			    padding-left: 10px;
+			    font-size: 1.2em;
+		    }
 	    }
-    }
+	}
+
+	.disable {
+		opacity: .5;
+	}
 }
 
 
 // Lesson details (student tiles)
 //@import "lesson-details.less"
+
 
 .tile () {
     background-color: rgba(255,255,255,0.95);

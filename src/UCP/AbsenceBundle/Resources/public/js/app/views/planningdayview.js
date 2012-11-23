@@ -1,6 +1,8 @@
 App.Views.PlanningDayView = Backbone.View.extend({
 
     // Expects 'date' and 'lessons' to be given to constructor
+    
+    className: 'day',
 
     initialize: function() {
         this.template = Handlebars.templates['planning-day'];

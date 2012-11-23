@@ -1,5 +1,7 @@
 App.Views.PlanningView = Backbone.View.extend({
 
+	className: 'planning',
+
     initialize: function() {
         this.lessons = this.collection;
         this.lessons.on('add change remove reset', this.render, this);
