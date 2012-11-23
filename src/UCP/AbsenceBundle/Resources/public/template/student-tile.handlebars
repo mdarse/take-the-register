@@ -1,2 +1,7 @@
-<img src="http://placehold.it/130x130">
+{{#picturePath}}
+    <img src="{{basePath}}{{.}}">
+{{/picturePath}}
+{{^picturePath}}
+    <img class="nopicture" src="{{basePath}}bundles/ucpabsence/images/nophoto.gif">
+{{/picturePath}}
 <div class="name">{{firstname}}<br><b>{{lastname}}</b></div>
