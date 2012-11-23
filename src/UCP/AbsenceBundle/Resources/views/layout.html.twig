@@ -62,12 +62,16 @@
                 "@underscore"
                 "@backbone"
                 "@handlebars_runtime"
-                "@handlebars_helper_dateformat"
+                "@handlebars_helpers"
                 "@moment"
                 output="js/libs.js" %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
             <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+            <script>
+                App = window.App || {};
+                App.basePath = "{{ app.request.basePath }}";
+            </script>
         {% endblock %}
     </body>
 </html>
