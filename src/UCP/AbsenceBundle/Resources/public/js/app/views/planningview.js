@@ -1,6 +1,6 @@
 App.Views.PlanningView = Backbone.View.extend({
 
-	className: 'planning',
+    className: 'planning',
 
     initialize: function() {
         this.lessons = this.collection;
