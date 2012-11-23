@@ -79,35 +79,36 @@ body {
     width: 100%;
     font-size: 14px;
     z-index: @zindexFixedNavbar;
-}
-#header a {
-    color: #fff;
-}
-#header ul {
-    list-style: none;
+    a {
+        color: #fff;
+    }
+    ul {
+        list-style: none;
+    }
 }
 #navigation {
     width: 960px;
     margin: 0 auto;
     text-transform: uppercase;
     .clearfix;
-}
-#navigation li {
-    padding: 0 0.625em;
-    float: left;
-    line-height: 40px;
-}
-#navigation li a {
-    display: block;
-    text-decoration: none;
-}
-#navigation li a.active,
-#navigation li a:hover {
-    border-top: 2px solid #fff;
-    line-height: 36px;
-}
-#navigation li a.active {
-    font-weight: bold;
+
+    li {
+        padding: 0 0.625em;
+        float: left;
+        line-height: 40px;
+        a {
+            display: block;
+            text-decoration: none;
+            &.active,
+            &:hover {
+                border-top: 2px solid #fff;
+                line-height: 36px;
+            }
+            &.active {
+                font-weight: bold;
+            }
+        }
+    }
 }
 
 // Account box
