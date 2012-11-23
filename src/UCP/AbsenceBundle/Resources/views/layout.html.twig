@@ -19,6 +19,8 @@
         {% endblock %}
     </head>
     <body>
+        <header id="header"></header>
+
         <div id="account-box">
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {{ app.user.username }} |
@@ -36,7 +38,7 @@
         </div>
         {% endfor %}
 
-        {% block navigation %}
+        {#% block navigation %}
         <ul id="navigation" class="nav nav-tabs">
             {% for route, item in navigation_bar %}
             <li{% if route == active_page %} class="active"{% endif%}>
@@ -49,7 +51,7 @@
             <li><a href="">...</a></li>
             <li><a href="">...</a></li>
         </ul>
-        {% endblock %}
+        {% endblock %#}
 
         {% block body %}{% endblock %}
         {% block content %}{% endblock %}

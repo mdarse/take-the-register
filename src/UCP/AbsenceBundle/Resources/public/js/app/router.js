@@ -10,8 +10,11 @@ App.Router = Backbone.Router.extend({
     },
 
     initialize: function() {
+        var navBarView = new App.Views.NavBarView({
+            el: '#header'
+        }).render();
+
         this.$content = $('#content');
-        // TODO Make a headerView to handle navigation
         
         this.studentCollection = new App.Models.StudentCollection();
     },

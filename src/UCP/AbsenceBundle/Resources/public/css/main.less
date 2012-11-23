@@ -34,7 +34,8 @@
 
 
 // Color code
-@color-lesson:white;
+@color-lesson: white;
+@vividColor: #6F1281;
 
 // Font weigths
 @fontWeightBook:      300;
@@ -60,11 +61,7 @@ q:after  { content: close-quote; }
 
 //// Layout
 body {
-    position: relative;
-    max-width: 960px;
-    // width: 960px;
-    margin: 0 auto;
-
+    margin-top: 60px;
     font-family: "Open Sans", sans-serif;
     font-size: 13px;
     background-image: url(../images/debut-light@2x.png);
@@ -72,18 +69,58 @@ body {
 }
 
 // Navigation
+#header {
+    background: @vividColor;
+    height: 40px;
+    line-height: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 14px;
+    z-index: @zindexFixedNavbar;
+}
+#header a {
+    color: #fff;
+}
+#header ul {
+    list-style: none;
+    margin-left: 0; 
+}
 #navigation {
-    margin-top: 20px;
+    padding-left: 1.125em;
+    text-transform: uppercase;
+    .clearfix;
+}
+#navigation li {
+    padding: 0 0.625em;
+    float: left;
+    line-height: 40px;
+}
+#navigation li a {
+    display: block;
+    text-decoration: none;
+}
+#navigation li a.active,
+#navigation li a:hover {
+    border-top: 2px solid #fff;
+    line-height: 36px;
+}
+#navigation li a.active {
+    font-weight: bold;
 }
 
 // Account box
 #account-box {
-    position: absolute;
+    position: fixed;
+    top: 0;
     right: 0;
-    padding: 2px 10px;
-    line-height: 2;
+    padding: 0 10px;
+    line-height: 40px;
     color: white;
-    background-color: black;
+    border-left: 1px solid #fff;
+    background-color: @grayDark;
+    z-index: @zindexFixedNavbar;
 
     a {
         color: white;
@@ -91,6 +128,9 @@ body {
 }
 
 #content {
+    max-width: 960px;
+    // width: 960px;
+    margin: 0 auto;
     .clearfix;
 }
 
@@ -266,6 +306,6 @@ ul.student-list {
 
     &.missing {
         color: white;
-        background-color: rgba(255,0,0,0.75);
+        background: @vividColor;
     }
 }
