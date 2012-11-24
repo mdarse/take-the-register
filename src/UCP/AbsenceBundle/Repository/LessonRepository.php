@@ -4,6 +4,7 @@ namespace UCP\AbsenceBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use UCP\AbsenceBundle\Entity\Lesson;
+use DateTime;
 
 /**
  * LessonRepository
@@ -13,10 +14,22 @@ use UCP\AbsenceBundle\Entity\Lesson;
  */
 class LessonRepository extends EntityRepository
 {
-    public function findUpcomingLessons($limit = 5)
+    public function findUpcomingLessons($limit = null)
     {
         $query = $this->_em->createQuery('SELECT l FROM UCPAbsenceBundle:Lesson l WHERE l.start >= ?1 ORDER BY l.start')
-            ->setParameter(1, new \DateTime())
+            ->setParameter(1, new DateTime())
+            ->setMaxResults($limit);
+
+        return $query->getResult();
+    }
+
+    public function findTodayOrUpcomingLessons($limit = null)
+    {
+        $startOfDay = new DateTime();
+        $startOfDay->setTime(0, 0, 0);
+
+        $query = $this->_em->createQuery('SELECT l FROM UCPAbsenceBundle:Lesson l WHERE l.start >= ?1 ORDER BY l.start')
+            ->setParameter(1, $startOfDay)
             ->setMaxResults($limit);
 
         return $query->getResult();
