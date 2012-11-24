@@ -10,8 +10,9 @@ App.Router = Backbone.Router.extend({
     },
 
     initialize: function() {
-        var navBarView = new App.Views.NavBarView({
-            el: '#header'
+        this.headerView = new App.Views.HeaderView({
+            el: '#header',
+            username: App.currentUsername
         }).render();
 
         this.$content = $('#content');
@@ -20,7 +21,7 @@ App.Router = Backbone.Router.extend({
     },
 
     home: function home() {
-        this.navigate("students", {trigger: true});
+        this.navigate("planning", {trigger: true});
     },
 
     // Planning
@@ -31,6 +32,7 @@ App.Router = Backbone.Router.extend({
             lessonCollection.fetch();
         }
         this.$content.html(this.planningView.el);
+        this.headerView.select('planning');
     },
 
     lesson: function(id) {
@@ -44,6 +46,7 @@ App.Router = Backbone.Router.extend({
             this.studentCollection.fetch();
         }
         this.$content.html(this.lessonView.el);
+        this.headerView.select('planning');
     },
 
     // Students
@@ -54,7 +57,7 @@ App.Router = Backbone.Router.extend({
             this.studentsView.reset();
         }
         this.$content.html(this.studentsView.el);
-        // TODO this.headerView.select('students');
+        this.headerView.select('students');
     },
 
     studentDetails: function(id) {
@@ -63,6 +66,7 @@ App.Router = Backbone.Router.extend({
         }
         this.studentsView.show(id);
         this.$content.html(this.studentsView.el);
+        this.headerView.select('students');
     },
 
     makeStudentsView: function() {

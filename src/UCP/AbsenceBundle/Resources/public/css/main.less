@@ -19,10 +19,6 @@
 // Grid system and page structure
 @import "bootstrap/scaffolding.less";
 
-// Components: Nav
-@import "bootstrap/navs.less";
-@import "bootstrap/navbar.less";
-
 
 
 //// Semantic Gris System
@@ -61,7 +57,6 @@ q:after  { content: close-quote; }
 
 //// Layout
 body {
-    margin-top: 60px;
     font-family: "Open Sans", sans-serif;
     font-size: 13px;
     background-image: url(../images/debut-light@2x.png);
@@ -70,64 +65,51 @@ body {
 
 // Navigation
 #header {
-    background: @vividColor;
-    height: 40px;
-    line-height: 40px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    min-height: 40px;
+    margin-bottom: 20px;
     font-size: 14px;
+    line-height: 40px;
+    color: #fff;
+    background: @vividColor;
     z-index: @zindexFixedNavbar;
     a {
         color: #fff;
     }
     ul {
+        margin: 0;
         list-style: none;
     }
+    .container {
+        width: 960px;
+        .container-fixed;
+    }
 }
-#navigation {
-    width: 960px;
-    margin: 0 auto;
+#navigation li {
+    padding: 0 0.625em;
+    float: left;
+    line-height: 40px;
     text-transform: uppercase;
-    .clearfix;
-
-    li {
-        padding: 0 0.625em;
-        float: left;
-        line-height: 40px;
-        a {
-            display: block;
-            text-decoration: none;
-            &.active,
-            &:hover {
-                border-top: 2px solid #fff;
-                line-height: 36px;
-            }
-            &.active {
-                font-weight: bold;
-            }
+    a {
+        display: block;
+        text-decoration: none;
+        &.active,
+        &:hover {
+            border-top: 2px solid #fff;
+            line-height: 36px;
         }
     }
 }
-
-// Account box
+#navigation {
+    float: left;
+}
 #account-box {
-    position: fixed;
-    top: 0;
-    right: 0;
-    padding: 0 10px;
-    line-height: 40px;
-    color: white;
+    padding: 0 0.625em;
+    float: right;
     border-left: 1px solid #fff;
-    background-color: @grayDark;
-    z-index: @zindexFixedNavbar;
-
-    a {
-        color: white;
-    }
+    border-right: 1px solid #fff;
 }
 
+// Content wrapper
 #content {
     max-width: 960px;
     // width: 960px;
@@ -144,22 +126,22 @@ body {
 ul.student-list {
     .column(3);
     height: 500px;
-    list-style: none;
-    box-sizing: border-box;
-    border: 1px solid @borderColor;
+    margin-bottom: 20px;
     font-size: 1.3em;
     font-weight: lighter;
-    margin-bottom: 20px;
+    background: #fff;
+    border: 1px solid @borderColor;
     overflow-y: auto;
+    list-style: none;
 
     a {
-        padding: 0 10px;
         display: block;
-        border-bottom: 1px solid @borderColor;
+        padding: 0 10px;
         line-height: 2;
-        white-space: nowrap;
-        overflow: hidden;
         text-overflow: ellipsis;
+        white-space: nowrap;
+        border-bottom: 1px solid @borderColor;
+        overflow: hidden;
     }
     li.active a,
     a:hover {

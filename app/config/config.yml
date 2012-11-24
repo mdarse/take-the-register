@@ -76,6 +76,10 @@ fos_user:
     firewall_name: main
     user_class: UCP\AbsenceBundle\Entity\User
 
+# FOSJsRouting Configuration
+fos_js_routing:
+    routes_to_expose: [ fos_user_security_logout ]
+
 # FOSRestBundle Configuration
 fos_rest:
     view:

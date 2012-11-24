@@ -1,10 +1,3 @@
-{% set navigation_bar = {
-    'lesson': 'Planning',
-    'student_admin_list': 'Étudiants',
-    'user_admin_list': 'Équipe pédogogique',
-    'sync_index': 'Paramètres'
-} %}
-{% set active_page = active_page|default('lesson') %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,37 +14,11 @@
     <body>
         <header id="header"></header>
 
-        <div id="account-box">
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ app.user.username }} |
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            {% endif %}
-        </div>
-
         {% for key, message in app.session.getFlashes() %}
         <div class="{{ key }}">
             {{ message|trans({}, 'FOSUserBundle') }}
         </div>
         {% endfor %}
-
-        {#% block navigation %}
-        <ul id="navigation" class="nav nav-tabs">
-            {% for route, item in navigation_bar %}
-            <li{% if route == active_page %} class="active"{% endif%}>
-            <a href="{{ path(route) }}">{{ item }}</a></li>
-            {% endfor %}
-        </ul>
-        <ul class="nav nav-tabs">
-            <li><a href="#planning">Planning</a></li>
-            <li><a href="#students">Students</a></li>
-            <li><a href="">...</a></li>
-            <li><a href="">...</a></li>
-        </ul>
-        {% endblock %#}
 
         {% block body %}{% endblock %}
         {% block content %}{% endblock %}
@@ -71,6 +38,7 @@
             <script>
                 App = window.App || {};
                 App.basePath = "{{ app.request.basePath }}";
+                App.currentUsername = "{{ app.user.username }}";
             </script>
         {% endblock %}
     </body>
