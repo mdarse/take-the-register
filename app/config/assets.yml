@@ -28,6 +28,7 @@ assetic:
             inputs:
                 - @UCPAbsenceBundle/Resources/public/js/lib/handlebars/dateformat.js
                 - @UCPAbsenceBundle/Resources/public/js/lib/handlebars/basepath.js
+                - @UCPAbsenceBundle/Resources/public/js/lib/handlebars/jsrouting.js
             filters: ?closure
             output: js/*.js
         moment:
