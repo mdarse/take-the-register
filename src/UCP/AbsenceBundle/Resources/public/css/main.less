@@ -55,12 +55,23 @@ q:after  { content: close-quote; }
 *:lang(fr) > * { quotes: "\00AB\202F" "\202F\00BB" "\201C" "\201D" "\2018" "\2019"; } /* French */
 
 
-//// Layout
+//// Type & General styles
+@fontFamily: "Open Sans", sans-serif;
 body {
-    font-family: "Open Sans", sans-serif;
+    font-family: @fontFamily;
     font-size: 13px;
     background-image: url(../images/debut-light@2x.png);
     background-size: 200px;
+}
+button {
+    font-family: @fontFamily;
+    font-weight: @fontWeightBook;
+    color: #fff;
+    background: #555;
+    border: 0;
+    &:hover {
+        background: #333;
+    }
 }
 
 // Navigation
@@ -138,6 +149,7 @@ ul.student-list {
         display: block;
         padding: 0 10px;
         line-height: 2;
+        color: @grayDark;
         text-overflow: ellipsis;
         white-space: nowrap;
         border-bottom: 1px solid @borderColor;
@@ -150,15 +162,12 @@ ul.student-list {
     }
 }
 .student-details {
+    position: relative;
+    min-height: 500px;
     .column(7);
     .push(1);
-    min-height: 500px;
-    // box-sizing: border-box;
-    // border: 1px solid @borderColor;
-    // .border-radius(3px);
-    // .box-shadow(0 0 10px 0 rgba(0,0,0,.2));
     margin-bottom: 20px;
-
+    .perspective(1500px);
     .flip-button {
         position: absolute;
         top: 0;
@@ -169,6 +178,7 @@ ul.student-list {
     .picture {
         display: block;
         width: 150px;
+        height: 150px;
         margin: 20px auto;
     }
     .name {
@@ -193,9 +203,33 @@ ul.student-list {
         }
     }
 
-    // Flip 3D effect
-    position: relative;
-    .perspective(1500px);
+    button.destroy,
+    button.edit,
+    button.save {
+        position: absolute;
+        bottom: 20px;
+    }
+    button.destroy {
+        right: 20px;
+    }
+    button.edit,
+    button.save {
+        left: 20px;
+    }
+    button.destroy,
+    button.save {
+        display: none;
+    }
+    &.editing {
+        button.edit {
+            display: none;
+        }
+        button.destroy,
+        button.save {
+            display: block;
+        }
+    }
+
     &.flip {
         .profile {
             .rotateY(-180deg);
