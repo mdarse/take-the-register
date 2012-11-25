@@ -37,8 +37,8 @@ App.Views.StudentsView = Backbone.View.extend({
         if (!student) {
             student = new App.Models.Student({ id: id });
             this.collection.add(student);
-            student.fetch();
         }
+        student.fetch();
         var view = new App.Views.StudentDetailsView({ model: student });
         view.render();
         this.setDetailView(view);

@@ -18,6 +18,7 @@ App.Router = Backbone.Router.extend({
         this.$content = $('#content');
         
         this.studentCollection = new App.Models.StudentCollection();
+        this.lessonCollection = new App.Models.LessonCollection();
     },
 
     home: function home() {
@@ -27,10 +28,9 @@ App.Router = Backbone.Router.extend({
     // Planning
     planning: function() {
         if (!this.planningView) {
-            var lessonCollection = new App.Models.LessonCollection();
-            this.planningView = new App.Views.PlanningView({ collection: lessonCollection });
-            lessonCollection.fetch();
+            this.planningView = new App.Views.PlanningView({ collection: this.lessonCollection });
         }
+        this.lessonCollection.fetch();
         this.$content.html(this.planningView.el);
         this.headerView.select('planning');
     },
@@ -43,7 +43,7 @@ App.Router = Backbone.Router.extend({
                 model: lesson
             });
             lesson.fetch();
-            this.studentCollection.fetch();
+            this.studentCollection.fetch({ add: true });
         }
         this.$content.html(this.lessonView.el);
         this.headerView.select('planning');
@@ -71,7 +71,7 @@ App.Router = Backbone.Router.extend({
 
     makeStudentsView: function() {
         this.studentsView = new App.Views.StudentsView({ collection: this.studentCollection });
-        this.studentCollection.fetch();
+        this.studentCollection.fetch({ add: true });
     },
 
     groups: function() {},
