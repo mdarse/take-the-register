@@ -8,38 +8,54 @@ use JMS\SerializerBundle\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="UCP\AbsenceBundle\Repository\LessonRepository")
+ * @Serializer\ExclusionPolicy("all")
  */
 class Lesson
 {
     /**
      * @ORM\Id
      * @ORM\Column(type="string")
+     * @Serializer\Expose
+     * @Serializer\Groups({"lesson-list", "lesson-details"})
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
+     * @Serializer\Expose
+     * @Serializer\Groups({"lesson-list","lesson-details"})
      */
     private $professor;
 
     /**
      * @ORM\Column(type="string")
+     * @Serializer\Expose
+     * @Serializer\Groups({"lesson-list", "lesson-details"})
+     * @Serializer\ReadOnly
      */
     private $label;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Serializer\Expose
+     * @Serializer\Groups({"lesson-list", "lesson-details"})
+     * @Serializer\ReadOnly
      */
     private $start;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Serializer\Expose
+     * @Serializer\Groups({"lesson-list", "lesson-details"})
+     * @Serializer\ReadOnly
      */
     private $end;
 
     /**
      * @ORM\OneToMany(targetEntity="Absence", mappedBy="lesson")
      * @Serializer\Type("ArrayCollection")
+     * @Serializer\Expose
+     * @Serializer\Groups({"lesson-details"})
      */
     private $absences;
     

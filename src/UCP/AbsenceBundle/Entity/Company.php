@@ -20,18 +20,21 @@ class Company
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Serializer\Groups({"student-details"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=80, nullable=true)
      * @Serializer\SerializedName("tutorName")
+     * @Serializer\Groups({"student-details"})
      */
     private $tutorName;
 
     /**
      * @ORM\Column(type="string", length=254, nullable=true)
      * @Serializer\SerializedName("tutorEmail")
+     * @Serializer\Groups({"student-details"})
      */
     private $tutorEmail;
 
@@ -39,6 +42,7 @@ class Company
      * @var string $phone
      *
      * @ORM\Column(type="string", length=15, nullable=true)
+     * @Serializer\Groups({"student-details"})
      */
     private $phone;
 
@@ -46,6 +50,7 @@ class Company
      * @var string $address
      *
      * @ORM\Column(type="string", nullable=true)
+     * @Serializer\Groups({"student-details"})
      */
     private $address;
 
@@ -53,6 +58,7 @@ class Company
      * @var string $city
      *
      * @ORM\Column(type="string", length=45, nullable=true)
+     * @Serializer\Groups({"student-details"})
      */
     private $city;
 
@@ -61,6 +67,7 @@ class Company
      *
      * @ORM\Column(type="string", length=5, nullable=true)
      * @Serializer\SerializedName("postalCode")
+     * @Serializer\Groups({"student-details"})
      */
     private $postalCode;
 

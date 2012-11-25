@@ -4,9 +4,11 @@ namespace UCP\AbsenceBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\SerializerBundle\Annotation as Serializer;
 
 /**
  * @ORM\Entity
+ * @Serializer\ExclusionPolicy("all")
  */
 class User extends BaseUser
 {
@@ -14,6 +16,8 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Expose
+     * @Serializer\Groups({"lesson-list", "lesson-details"})
      */
     protected $id;
 

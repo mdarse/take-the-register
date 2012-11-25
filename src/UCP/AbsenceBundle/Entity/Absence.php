@@ -3,15 +3,20 @@
 namespace UCP\AbsenceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\SerializerBundle\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="UCP\AbsenceBundle\Repository\AbsenceRepository")
+ * @Serializer\ExclusionPolicy("all")
  */
 class Absence
 {
     /**
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Student", inversedBy="absences")
+     * @Serializer\Expose
+     * @Serializer\Groups({"lesson-details"})
+     * @Serializer\ReadOnly
      */
     private $student;
 
@@ -23,11 +28,15 @@ class Absence
 
     /**
      * @ORM\Column(type="boolean")
+     * @Serializer\Expose
+     * @Serializer\Groups({"lesson-details"})
      */
     private $justified;
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Serializer\Expose
+     * @Serializer\Groups({"lesson-details"})
      */
     private $reason;
 
@@ -105,6 +114,16 @@ class Absence
     {
         return $this->student;
     }
+
+    /**
+     * Get student id
+     *
+     * @return integer
+     */
+    // public function getStudentId()
+    // {
+    //     return $this->getStudent()->getId();
+    // }
 
     /**
      * Set lesson

@@ -19,6 +19,9 @@ framework:
     trust_proxy_headers: false # Whether or not the Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
     session:         ~
 
+sensio_framework_extra:
+    view:    { annotations: false }
+
 # Twig Configuration
 twig:
     debug:            %kernel.debug%
@@ -83,6 +86,7 @@ fos_js_routing:
 # FOSRestBundle Configuration
 fos_rest:
     view:
+        view_response_listener: true
         formats:
             json: true
         templating_formats: ~

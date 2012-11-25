@@ -2,14 +2,9 @@
 
 namespace UCP\AbsenceBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\FOSRestController;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use UCP\AbsenceBundle\Entity\Student;
@@ -21,28 +16,29 @@ class StudentController extends FOSRestController
      * Retrieve a collection of all students
      *
      * @ApiDoc()
+     * @Rest\View(serializerGroups={"student-list"})
      */
     public function getStudentsAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('UCPAbsenceBundle:Student');
+        $students = $repo->findBy(
+            array(),
+            array('lastname' => 'ASC')
+        );
 
-        $students = $em->getRepository('UCPAbsenceBundle:Student')->findAll();
-
-        $view = $this->view($students, 200);
-
-        return $this->handleView($view);
+        return $this->view($students);
     }
 
     /**
      * Retrieve a single student
      *
      * @ApiDoc()
+     * @Rest\View(serializerGroups={"student-details"})
      */
     public function getStudentAction(Student $student)
     {
-        $view = $this->view($student, 200);
-
-        return $this->handleView($view);
+        return $this->view($student);
     }
 
     /**

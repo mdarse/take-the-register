@@ -5,5 +5,8 @@ FOS\UserBundle\Model\User:
             expose: true
         username:
             expose: true
+            groups:
+                - "lesson-list"
+                - "lesson-details"
         email:
             expose: true

@@ -17,7 +17,7 @@ class StudentType extends AbstractType
             ->add('ine')
             ->add('email', 'email')
             ->add('phone')
-            // ->add('picturePath')
+            ->add('picturePath', null, array('mapped' => false))
             ->add('company', new CompanyType())
         ;
     }

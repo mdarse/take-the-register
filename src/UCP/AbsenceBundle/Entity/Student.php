@@ -10,6 +10,7 @@ use JMS\SerializerBundle\Annotation as Serializer;
 /**
  * @ORM\Entity(repositoryClass="UCP\AbsenceBundle\Repository\StudentRepository")
  * @ORM\HasLifecycleCallbacks
+ * @Serializer\ExclusionPolicy("all")
  */
 class Student
 {
@@ -17,29 +18,39 @@ class Student
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Expose
+     * @Serializer\Groups({"student-list", "student-details", "lesson-details"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string")
+     * @Serializer\Expose
+     * @Serializer\Groups({"student-list", "student-details", "lesson-details"})
      * @Assert\NotBlank
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string")
+     * @Serializer\Expose
+     * @Serializer\Groups({"student-list", "student-details", "lesson-details"})
      * @Assert\NotBlank
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=11, nullable=true)
+     * @Serializer\Expose
+     * @Serializer\Groups({"student-details"})
      * @Assert\Regex("/^\d{10}[A-Z]$/")
      */
     private $ine;
 
     /**
      * @ORM\Column(type="string", length=254, nullable=true)
+     * @Serializer\Expose
+     * @Serializer\Groups({"student-details"})
      * @Assert\Email
      */
     private $email;
@@ -48,6 +59,8 @@ class Student
      * International phone number according to ITU-T E.123 & ITU-T E.164
      * 
      * @ORM\Column(type="string", length=15, nullable=true)
+     * @Serializer\Expose
+     * @Serializer\Groups({"student-details"})
      * @Assert\Regex("/^\+(?:[0-9] ?){6,14}[0-9]$/")
      */
     private $phone;
@@ -61,18 +74,21 @@ class Student
      * @ORM\Column(type="string", nullable=true)
      * @Serializer\SerializedName("picturePath")
      * @Serializer\Accessor(getter="getWebPicturePath")
+     * @Serializer\Expose
+     * @Serializer\Groups({"student-list", "student-details"})
      */
     private $picturePath;
 
     /**
      * @ORM\OneToOne(targetEntity="Company", cascade="all", orphanRemoval=true)
+     * @Serializer\Expose
+     * @Serializer\Groups({"student-details"})
      */
     private $company;
 
     /**
      * @ORM\OneToMany(targetEntity="Absence", mappedBy="student")
      * @Serializer\Type("ArrayCollection")
-     * @Serializer\Exclude
      */
     private $absences;
 

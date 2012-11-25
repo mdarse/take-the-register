@@ -3,6 +3,7 @@
 namespace UCP\AbsenceBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use UCP\AbsenceBundle\Entity\Lesson;
 
@@ -12,6 +13,7 @@ class LessonController extends FOSRestController
      * Retrieve a collection of lessons
      *
      * @ApiDoc()
+     * @Rest\View(serializerGroups={"lesson-list"})
      */
     public function getLessonsAction()
     {
@@ -19,20 +21,17 @@ class LessonController extends FOSRestController
 
         $lessons = $em->getRepository('UCPAbsenceBundle:Lesson')->findTodayOrUpcomingLessons(10);
 
-        $view = $this->view($lessons, 200);
-
-        return $this->handleView($view);
+        return $this->view($lessons);
     }
 
     /**
      * Retrieve a single lesson
      *
      * @ApiDoc()
+     * @Rest\View(serializerGroups={"lesson-details"})
      */
     public function getLessonAction(Lesson $lesson)
     {
-        $view = $this->view($lesson, 200);
-
-        return $this->handleView($view);
+        return $this->view($lesson);
     }
 }
