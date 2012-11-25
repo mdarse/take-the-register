@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+/*
 
 class notificationCommand extends ContainerAwareCommand
 {
@@ -28,7 +29,7 @@ class notificationCommand extends ContainerAwareCommand
         if ($mailTo&&$subject&&$content) {
             $message = \Swift_Message::newInstance()
                 ->setSubject($subject)
-                ->setFrom('no-reply@ttr.com')
+                ->setFrom('no-reply@romainbellina.fr')
                 ->setTo($mailTo)
                 ->setBody($this->renderView('HelloBundle:Hello:email.txt.twig', $content))
             ;
@@ -36,5 +37,6 @@ class notificationCommand extends ContainerAwareCommand
         }
     }
 }
+*/
 
 ?>
