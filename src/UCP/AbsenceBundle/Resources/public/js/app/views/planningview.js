@@ -14,13 +14,13 @@ App.Views.PlanningView = Backbone.View.extend({
         var lessonsDate;
         //Récuperation de la date pour trier les lessons au format YYY-MM-DD
         var currentLessonDate = lessons[0].get('start');
-        currentLessonDate = currentLessonDate.split(" ");
+        currentLessonDate = currentLessonDate.split("T");
         currentLessonDate = currentLessonDate[0];
         //parcour du tableau 'lessons'
         for (var i = 0, l = lessons.length; i < l; i++) {
            //Recuperation de la date de la lesson en cours
            lessonsDate = lessons[i].get('start');
-           lessonsDate = lessonsDate.split(" ");
+           lessonsDate = lessonsDate.split("T");
 
            if(lessonsDate[0] == currentLessonDate){
                lessonsDay.push(lessons[i]);
@@ -37,11 +37,19 @@ App.Views.PlanningView = Backbone.View.extend({
                 lessonsDay=[];
                 //Date suivante
                 currentLessonDate = lessons[i].get('start');
-                currentLessonDate = currentLessonDate.split(" ");
+                currentLessonDate = currentLessonDate.split("T");
                 currentLessonDate = currentLessonDate[0];
                 lessonsDay.push(lessons[i]);
            }
+           
         };
+        //Création de la derniere vue avec les derniere lessons testé.
+        var view = new App.Views.PlanningDayView({
+                    date: currentLessonDate,
+                    lessons: lessonsDay
+                });
+                view.render();
+                this.$el.append(view.el);
         return this;
     }
 
