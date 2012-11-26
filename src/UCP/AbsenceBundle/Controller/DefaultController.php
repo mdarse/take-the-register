@@ -9,11 +9,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
-class DashboardController extends Controller
+class DefaultController extends Controller
 {
     /**
      * @Secure("ROLE_USER")
-     * @Route("/", name="dashboard")
+     * @Route("/", name="default")
      * @Template
      */
     public function indexAction()
