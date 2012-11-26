@@ -8,6 +8,10 @@ assetic:
             inputs: @UCPAbsenceBundle/Resources/public/js/lib/zepto.js
             filters: ?closure
             output: js/*.js
+        jquery:
+            inputs: @UCPAbsenceBundle/Resources/public/js/lib/jquery.js
+            filters: ?closure
+            output: js/*.js
         backbone:
             inputs: @UCPAbsenceBundle/Resources/public/js/lib/backbone.js
             filters: ?closure
