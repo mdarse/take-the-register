@@ -58,7 +58,27 @@ class Lesson
      * @Serializer\Groups({"lesson-details"})
      */
     private $absences;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $registerStarted;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $registerFinished;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $recallNotificationSent;
     
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $completedNotificationSent;
+
     /**
      * Constructor
      */
@@ -213,5 +233,97 @@ class Lesson
     public function getAbsences()
     {
         return $this->absences;
+    }
+
+    /**
+     * Set registerStarted
+     *
+     * @param boolean $registerStarted
+     * @return Lesson
+     */
+    public function setRegisterStarted($registerStarted)
+    {
+        $this->registerStarted = $registerStarted;
+    
+        return $this;
+    }
+
+    /**
+     * Get registerStarted
+     *
+     * @return boolean 
+     */
+    public function getRegisterStarted()
+    {
+        return $this->registerStarted;
+    }
+
+    /**
+     * Set registerFinished
+     *
+     * @param boolean $registerFinished
+     * @return Lesson
+     */
+    public function setRegisterFinished($registerFinished)
+    {
+        $this->registerFinished = $registerFinished;
+    
+        return $this;
+    }
+
+    /**
+     * Get registerFinished
+     *
+     * @return boolean 
+     */
+    public function isRegisterFinished()
+    {
+        return $this->registerFinished;
+    }
+
+    /**
+     * Set recallNotificationSent
+     *
+     * @param boolean $recallNotificationSent
+     * @return Lesson
+     */
+    public function setRecallNotificationSent($recallNotificationSent)
+    {
+        $this->recallNotificationSent = $recallNotificationSent;
+    
+        return $this;
+    }
+
+    /**
+     * Get recallNotificationSent
+     *
+     * @return boolean 
+     */
+    public function isRecallNotificationSent()
+    {
+        return $this->recallNotificationSent;
+    }
+
+    /**
+     * Set completedNotificationSent
+     *
+     * @param boolean $completedNotificationSent
+     * @return Lesson
+     */
+    public function setCompletedNotificationSent($completedNotificationSent)
+    {
+        $this->completedNotificationSent = $completedNotificationSent;
+    
+        return $this;
+    }
+
+    /**
+     * Get completedNotificationSent
+     *
+     * @return boolean 
+     */
+    public function isCompletedNotificationSent()
+    {
+        return $this->completedNotificationSent;
     }
 }
