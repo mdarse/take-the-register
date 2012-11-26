@@ -3,6 +3,7 @@ App.Router = Backbone.Router.extend({
         "": "home",
         "planning": "planning",
         "planning/:id": "lesson",
+        "absences": "absences",
         "students": "students",
         "students/:id": "studentDetails",
         "groups": "groups",
@@ -49,6 +50,20 @@ App.Router = Backbone.Router.extend({
 
         this.$content.html(this.lessonView.el);
         this.headerView.select('planning');
+    },
+
+    // Abences
+    absences: function() {
+        if (!this.absencesView) {
+            this.absencesView = new App.Views.AbsencesView({
+                students: this.studentCollection
+            });
+        }
+        this.$content.html(this.absencesView.render().el);
+        this.headerView.select('absences');
+
+        // Fetch student as it may be empty
+        this.studentCollection.fetch();
     },
 
     // Students
