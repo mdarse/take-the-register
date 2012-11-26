@@ -85,6 +85,7 @@ fos_js_routing:
 
 # FOSRestBundle Configuration
 fos_rest:
+    param_fetcher_listener: true
     view:
         view_response_listener: true
         formats:

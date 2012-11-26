@@ -57,6 +57,13 @@ lessons:
     options:
         expose: true
 
+absences:
+    type:     rest
+    resource: UCP\AbsenceBundle\Controller\AbsenceController
+    prefix:   /api
+    options:
+        expose: true
+
 
 ucp_absence_management:
     resource: "@UCPAbsenceBundle/Controller/"

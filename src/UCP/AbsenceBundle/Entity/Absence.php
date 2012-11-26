@@ -15,28 +15,44 @@ class Absence
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Student", inversedBy="absences")
      * @Serializer\Expose
-     * @Serializer\Groups({"lesson-details"})
+     * @Serializer\Groups({"absences", "lesson-details"})
      * @Serializer\ReadOnly
+     * @Serializer\Accessor(getter="getStudentId")
      */
     private $student;
 
     /**
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="absences")
+     * @Serializer\Expose
+     * @Serializer\Groups({"absences"})
+     * @Serializer\ReadOnly
+     * @Serializer\Accessor(getter="getLessonId")
      */
     private $lesson;
 
     /**
+     * Composite id used front-side
+     *
+     * @Serializer\Expose
+     * @Serializer\Groups({"absences"})
+     * @Serializer\ReadOnly
+     * @Serializer\Accessor(getter="getCompositeId")
+     * @Serializer\SerializedName("id")
+     */
+    private $compositeId;
+
+    /**
      * @ORM\Column(type="boolean")
      * @Serializer\Expose
-     * @Serializer\Groups({"lesson-details"})
+     * @Serializer\Groups({"absences", "lesson-details"})
      */
     private $justified;
 
     /**
      * @ORM\Column(type="string", nullable=true)
      * @Serializer\Expose
-     * @Serializer\Groups({"lesson-details"})
+     * @Serializer\Groups({"absences", "lesson-details"})
      */
     private $reason;
 
@@ -120,10 +136,10 @@ class Absence
      *
      * @return integer
      */
-    // public function getStudentId()
-    // {
-    //     return $this->getStudent()->getId();
-    // }
+    public function getStudentId()
+    {
+        return $this->getStudent()->getId();
+    }
 
     /**
      * Set lesson
@@ -146,5 +162,23 @@ class Absence
     public function getLesson()
     {
         return $this->lesson;
+    }
+
+    /**
+     * Get lesson id
+     *
+     * @return integer
+     */
+    public function getLessonId()
+    {
+        return $this->getLesson()->getId();
+    }
+
+    /**
+     * Get composite id
+     */
+    public function getCompositeId()
+    {
+        return $this->getLessonId() .'-'. $this->getStudentId();
     }
 }

@@ -2,114 +2,55 @@
 
 namespace UCP\AbsenceBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use JMS\SecurityExtraBundle\Annotation\Secure;
-use UCP\AbsenceBundle\Entity\Lesson;
-use UCP\AbsenceBundle\Entity\Student;
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Request\ParamFetcher;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use UCP\AbsenceBundle\Entity\Absence;
 
-class AbsenceController extends Controller
+class AbsenceController extends FOSRestController
 {
     /**
-     * @Secure("ROLE_USER")
-     * @Route("/lesson", name="lesson")
-     * @Template("UCPAbsenceBundle:Absence:index.html.twig")
+     * Retrieve a collection of absences
+     *
+     * @ApiDoc()
+     * @Rest\View(serializerGroups={"absences"})
+     * @Rest\QueryParam(name="page", requirements="\d+", default="1", description="Page of the overview.")
+     * @Rest\QueryParam(name="count", requirements="\d+", default="20", description="Item count limit")
+     * @Rest\QueryParam(name="lesson", description="Lesson id to retrieve absences for.")
+     * @Rest\QueryParam(name="student", requirements="\d+",description="Student id to retrieve absences for.")
      */
-    public function indexAction()
+    public function getAbsencesAction(ParamFetcher $paramFetcher)
     {
         $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('UCPAbsenceBundle:Absence');
 
-        $lessons = $em->getRepository('UCPAbsenceBundle:Lesson')->findUpcomingLessons(10);
+        $limit = min($paramFetcher->get('count'), 50); // Hard limit to 50 items
+        $offset = $limit * ($paramFetcher->get('page') - 1);
+        $student = $paramFetcher->get('student');
+        $lesson = $paramFetcher->get('lesson');
 
-        return array('upcoming_lessons' => $lessons);
+        $criteria = array();
+        if ($student) {
+            $criteria['student'] = $em->getReference('UCPAbsenceBundle:Student', $student);
+        }
+        if ($lesson) {
+            $criteria['lesson'] = $em->getReference('UCPAbsenceBundle:Lesson', $lesson);
+        }
+
+        $absences = $repo->findBy($criteria, array(), $limit, $offset);
+
+        return $this->view($absences);
     }
 
     /**
-     * @Secure("ROLE_USER")
-     * @Route("/lesson/{id}", name="lesson_show")
-     * @Template("UCPAbsenceBundle:Absence:lesson.html.twig")
+     * Retrieve a single lesson
+     *
+     * @ApiDoc()
+     * @Rest\View(serializerGroups={"absences"})
      */
-    public function showAction(Lesson $lesson)
+    public function postAbsenceAction(Absence $absence)
     {
-        $em = $this->getDoctrine()->getManager();
-        
-        $studentRepository = $em->getRepository('UCPAbsenceBundle:Student');
-        $allStudents       = $studentRepository->findAll();
-        $absentStudents    = $studentRepository->findAbsentByLesson($lesson);
-
-        $repo           = $em->getRepository('UCPAbsenceBundle:Lesson');
-        $previousLesson = $repo->findPreviousLesson($lesson);
-        $nextLesson     = $repo->findNextLesson($lesson);
-
-        return array(
-            'students'        => $allStudents,
-            'absent_students' => $absentStudents,
-            'lesson'          => $lesson,
-            'previous_lesson' => $previousLesson,
-            'next_lesson'     => $nextLesson
-        );
-    }
-
-    /**
-     * @Secure("ROLE_USER")
-     * @Route("/lesson/{lesson}/{student}/absent", name="lesson_absence_create")
-     */
-    public function markAbsentAction(Lesson $lesson, Student $student)
-    {
-        if (!$this->editAllowed($lesson)) {
-            throw new AccessDeniedException();
-        }
-
-        $em = $this->getDoctrine()->getManager();
-
-        $absence = new Absence($lesson, $student);
-        $absence->setJustified(false);
-
-        $em->merge($absence);
-        $em->flush();
-
-        return $this->redirect($this->generateUrl('lesson_show', array('id' => $lesson->getId())));
-    }
-
-    /**
-     * @Secure("ROLE_USER")
-     * @Route("/lesson/{lesson}/{student}/present", name="lesson_absence_delete")
-     */
-    public function markPresentAction(Lesson $lesson, Student $student)
-    {
-        if (!$this->editAllowed($lesson)) {
-            throw new AccessDeniedException();
-        }
-
-        $em = $this->getDoctrine()->getManager();
-
-        $absence = $em->find('UCPAbsenceBundle:Absence', array(
-            'lesson'  => $lesson->getId(),
-            'student' => $student->getId()
-        ));
-
-        if ($absence) {
-            $em->remove($absence);
-            $em->flush();
-        }
-
-        return $this->redirect($this->generateUrl('lesson_show', array('id' => $lesson->getId())));
-    }
-
-    private function editAllowed(Lesson $lesson)
-    {
-        $sc = $this->get('security.context');
-
-        if (true === $sc->isGranted('ROLE_SECRETARY') || $lesson->getEnd() > new \DateTime()) {
-            return true;
-        }
-
-        return false;
+        return $this->view($absence);
     }
 }
