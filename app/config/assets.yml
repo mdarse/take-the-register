@@ -12,6 +12,10 @@ assetic:
             inputs: @UCPAbsenceBundle/Resources/public/js/lib/backbone.js
             filters: ?closure
             output: js/*.js
+        backbone_ui:
+            inputs: @UCPAbsenceBundle/Resources/public/js/lib/backbone-ui.js
+            filters: ?closure
+            output: js/*.js
         underscore:
             inputs: @UCPAbsenceBundle/Resources/public/js/lib/underscore.js
             filters: ?closure
