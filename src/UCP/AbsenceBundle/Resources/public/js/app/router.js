@@ -36,15 +36,17 @@ App.Router = Backbone.Router.extend({
     },
 
     lesson: function(id) {
-        if (!this.lessonView) {
-            var lesson = new App.Models.Lesson({ id: id });
-            this.lessonView = new App.Views.LessonView({
-                studentCollection: this.studentCollection,
-                model: lesson
-            });
-            lesson.fetch();
-            this.studentCollection.fetch({ add: true });
-        }
+        var lesson = new App.Models.Lesson({ id: id });
+
+        var lessonView = this.lessonView = new App.Views.LessonView({
+            studentCollection: this.studentCollection,
+            lesson: lesson
+        }).render();
+
+        // Fetch fresh data from server
+        lesson.fetch();
+        this.studentCollection.fetch();
+
         this.$content.html(this.lessonView.el);
         this.headerView.select('planning');
     },
@@ -56,7 +58,7 @@ App.Router = Backbone.Router.extend({
         } else {
             this.studentsView.reset();
         }
-        this.$content.html(this.studentsView.el);
+        this.$content.html(this.studentsView.render().el);
         this.headerView.select('students');
     },
 
