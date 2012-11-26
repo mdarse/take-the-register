@@ -1,1 +1,19 @@
-<div>[Filters]</div>
+<div>
+    <a href="#planning">Retour au planning</a>
+    <h1>{{lesson.label}}</h1>
+
+    {{#if editable}}
+        {{#if editing}}
+            <div>Selectionnez les absents, une fois terminé, <button class="save">Clôturer l'appel</button></div>
+        {{/if}}
+
+        {{^if editing}}
+        <div><button class="edit">Faire l'appel</button></div>
+        {{/if}}
+    {{/if}}
+    {{^if editable}}
+        <div>(lecture seule)</div>
+    {{/if}}
+
+    {{!<a href="#" class="view-toggle">Toggle view mode</a>}}
+</div>
