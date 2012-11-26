@@ -1142,7 +1142,7 @@
     MIT license
     www.opensource.org/licenses/mit-license.php
 */
-(function($, udf) {
+/*(function($, udf) {
     var ns = ".inputEvent ",
         // A bunch of data strings that we use regularly
         dataBnd = "bound.inputEvent",
@@ -1258,7 +1258,7 @@
     $.fn.input = function (handler) {
         return handler ? $(this).bind("txtinput", handler) : this.trigger("txtinput");
     }
-})(jQuery);
+})(jQuery);*/
 (function(){
   window.Backbone.UI.Label = Backbone.View.extend({
     options : {
