@@ -2,6 +2,7 @@
 
 namespace UCP\AbsenceBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Request\ParamFetcher;
@@ -44,13 +45,53 @@ class AbsenceController extends FOSRestController
     }
 
     /**
-     * Retrieve a single lesson
+     * Creates an absence
      *
      * @ApiDoc()
-     * @Rest\View(serializerGroups={"absences"})
+     * @Rest\View(serializerGroups={"absences"}, statusCode="201")
      */
-    public function postAbsenceAction(Absence $absence)
+    public function postAbsencesAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('UCPAbsenceBundle:Absence');
+
+        $lessonId = $request->request->get('lesson');
+        $lesson = $em->getReference('UCPAbsenceBundle:Lesson', $lessonId);
+        $studentId = $request->request->get('student');
+        $student = $em->getReference('UCPAbsenceBundle:Student', $studentId);
+
+        $absence = new Absence($lesson, $student);
+        $absence->setJustified(false);
+        $em->persist($absence);
+        $em->flush();
+
         return $this->view($absence);
+    }
+
+    /**
+     * Delete an absence
+     *
+     * @ApiDoc()
+     * @Rest\View(serializerGroups={"absences"}, statusCode="204")
+     */
+    public function deleteAbsenceAction($publicId)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('UCPAbsenceBundle:Absence');
+
+        $absence = $repo->find($this->getIndentifier($publicId));
+        $em->remove($absence);
+        $em->flush();
+
+        return $this->view();
+    }
+
+    private function getIndentifier($publicId)
+    {
+        $split = explode('-', $publicId, 2);
+        return array(
+            'lesson' => $split[0],
+            'student' => $split[1]
+        );
     }
 }
