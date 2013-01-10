@@ -30,7 +30,7 @@ App.Views.PlanningView = Backbone.View.extend({
             lessonBag = []; // Temporary array holding holding lessons between each iterator call
 
         _.each(lessons, function(lesson) {
-            lessonDate = new Date(lesson.get('start'));
+            lessonDate = moment(lesson.get('start')).toDate();
             lessonDate.setHours(0,0,0,0); // We strip time components to compare date reliablely
             if (lessonDate > lastDate) {
                 // We changed of day: call iterator and reset lesson bag
