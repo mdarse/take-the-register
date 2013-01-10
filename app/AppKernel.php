@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new Kunstmaan\SentryBundle\KunstmaanSentryBundle(),
             new UCP\AbsenceBundle\UCPAbsenceBundle(),
         );
 

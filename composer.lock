@@ -1,5 +1,5 @@
 {
-    "hash": "f8c2c309e7acb481fa780fccc668f497",
+    "hash": "dfba4f64ec83bb33e8ab1e75a793d850",
     "packages": [
         {
             "name": "ddeboer/guzzle-bundle",
@@ -21,9 +21,8 @@
                 "symfony/symfony": ">=2.0,<2.2",
                 "guzzle/guzzle": "*"
             },
-            "time": "1341990130",
+            "time": "2012-07-11 07:02:10",
             "type": "symfony-bundle",
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Ddeboer\\GuzzleBundle": ""
@@ -79,14 +78,13 @@
             "require": {
                 "php": ">=5.3"
             },
-            "time": "1342369887",
+            "time": "2012-07-15 16:31:27",
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.0-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "dflydev\\markdown": "src"
@@ -144,7 +142,6 @@
                     "dev-master": "2.3.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Doctrine\\Common": "lib/"
@@ -187,7 +184,7 @@
                 "annotations",
                 "persistence"
             ],
-            "time": "1348120518"
+            "time": "2012-09-20 05:55:18"
         },
         {
             "name": "doctrine/dbal",
@@ -213,7 +210,6 @@
                     "dev-master": "2.3.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Doctrine\\DBAL": "lib/"
@@ -249,7 +245,7 @@
                 "dbal",
                 "queryobject"
             ],
-            "time": "1348120597"
+            "time": "2012-09-20 05:56:37"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -286,7 +282,6 @@
                     "dev-master": "1.0.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Doctrine\\Bundle\\DoctrineBundle": ""
@@ -317,7 +312,7 @@
                 "persistence",
                 "dbal"
             ],
-            "time": "1347289964"
+            "time": "2012-09-10 15:12:44"
         },
         {
             "name": "doctrine/orm",
@@ -352,7 +347,6 @@
                     "dev-master": "2.3.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Doctrine\\ORM": "lib/"
@@ -386,7 +380,7 @@
                 "database",
                 "orm"
             ],
-            "time": "1348121015"
+            "time": "2012-09-20 06:03:35"
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
@@ -408,14 +402,13 @@
                 "symfony/framework-bundle": ">=2.0,<2.3-dev",
                 "symfony/serializer": ">=2.0,<2.3-dev"
             },
-            "time": "1351727793",
+            "time": "2012-10-31 23:56:33",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.0-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "FOS\\JsRoutingBundle": ""
@@ -466,7 +459,6 @@
                     "dev-master": "0.8.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "FOS\\Rest": ""
@@ -490,7 +482,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "1347135166"
+            "time": "2012-09-08 20:12:46"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -528,7 +520,6 @@
                     "dev-master": "0.10.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "FOS\\RestBundle": ""
@@ -557,7 +548,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "1352307483"
+            "time": "2012-11-07 16:58:03"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -592,14 +583,13 @@
                 "doctrine/doctrine-bundle": "*",
                 "doctrine/mongodb-odm-bundle": "*"
             },
-            "time": "1349476472",
+            "time": "2012-10-05 22:34:32",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.0.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "FOS\\UserBundle": ""
@@ -673,7 +663,6 @@
                 "zend/zend-log": "2.0.0beta3"
             },
             "type": "library",
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Guzzle\\Tests": "tests/",
@@ -705,7 +694,7 @@
                 "client",
                 "web service"
             ],
-            "time": "1349038090"
+            "time": "2012-09-30 20:48:10"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -732,14 +721,13 @@
             "require-dev": {
                 "composer/composer": "*"
             },
-            "time": "1351256616",
+            "time": "2012-10-26 13:03:36",
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.0.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Incenteev\\ParameterHandler": ""
@@ -781,7 +769,6 @@
             },
             "time": "2012-01-02 20:50:26",
             "type": "symfony-bundle",
-            "installation-source": "dist",
             "autoload": {
                 "psr-0": {
                     "JMS\\AopBundle": ""
@@ -823,7 +810,6 @@
             },
             "time": "2012-01-02 20:40:52",
             "type": "library",
-            "installation-source": "dist",
             "autoload": {
                 "psr-0": {
                     "CG\\": "src/"
@@ -881,7 +867,6 @@
                 "doctrine/orm": "*"
             },
             "type": "symfony-bundle",
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "JMS\\DiExtraBundle": ""
@@ -904,7 +889,7 @@
                 "dependency injection",
                 "annotations"
             ],
-            "time": "1347872946"
+            "time": "2012-09-17 09:09:06"
         },
         {
             "name": "jms/metadata",
@@ -925,7 +910,6 @@
             },
             "time": "2012-01-02 21:32:49",
             "type": "library",
-            "installation-source": "dist",
             "autoload": {
                 "psr-0": {
                     "Metadata\\": "src/"
@@ -987,7 +971,6 @@
                 "symfony/validator": "*"
             },
             "type": "symfony-bundle",
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "JMS\\SecurityExtraBundle": ""
@@ -1013,7 +996,7 @@
                 "secure",
                 "expression"
             ],
-            "time": "1346947943"
+            "time": "2012-09-06 16:12:23"
         },
         {
             "name": "jms/serializer-bundle",
@@ -1056,7 +1039,6 @@
                     "dev-master": "1.0-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "JMS\\SerializerBundle": ""
@@ -1082,7 +1064,7 @@
                 "deserialization",
                 "jaxb"
             ],
-            "time": "1351804432"
+            "time": "2012-11-01 21:13:52"
         },
         {
             "name": "knplabs/knp-menu",
@@ -1111,14 +1093,13 @@
                 "silex/silex": "for the integration with your silex application",
                 "twig/twig": "for the TwigRenderer and the integration with your templates"
             },
-            "time": "1339345240",
+            "time": "2012-06-10 16:20:40",
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.1.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Knp\\Menu\\": "src/"
@@ -1169,7 +1150,6 @@
             },
             "time": "2012-05-17 11:56:49",
             "type": "symfony-bundle",
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Knp\\Bundle\\MenuBundle": ""
@@ -1235,7 +1215,6 @@
                     "dev-master": "1.1-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Assetic": "src/"
@@ -1261,7 +1240,52 @@
                 "compression",
                 "minification"
             ],
-            "time": "1347622188"
+            "time": "2012-09-14 11:29:48"
+        },
+        {
+            "name": "kunstmaan/sentry-bundle",
+            "version": "dev-master",
+            "target-dir": "Kunstmaan/SentryBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kunstmaan/KunstmaanSentryBundle",
+                "reference": "532fa2ea304a715ba16f3a5dd440be3aada14438"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/Kunstmaan/KunstmaanSentryBundle/archive/532fa2ea304a715ba16f3a5dd440be3aada14438.zip",
+                "reference": "532fa2ea304a715ba16f3a5dd440be3aada14438",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "2.1.*",
+                "raven/raven": "dev-master"
+            },
+            "time": "2013-01-09 17:37:16",
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Kunstmaan\\SentryBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kunstmaan Team",
+                    "email": "support@kunstmaan.be",
+                    "homepage": "http://www.kunstmaan.be/"
+                }
+            ],
+            "description": "The SentryBundle is a Symfony2 bundle for using Raven to send exceptions to Sentry (getsentry.com)",
+            "homepage": "https://github.com/Kunstmaan/KunstmaanSentryBundle",
+            "keywords": [
+                "exceptions",
+                "sentry"
+            ]
         },
         {
             "name": "monolog/monolog",
@@ -1294,7 +1318,6 @@
                     "dev-master": "1.3.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Monolog": "src/"
@@ -1317,7 +1340,7 @@
                 "log",
                 "logging"
             ],
-            "time": "1347983448"
+            "time": "2012-09-18 15:50:48"
         },
         {
             "name": "nelmio/api-doc-bundle",
@@ -1348,14 +1371,13 @@
                 "symfony/validator": ">=2.1,<2.3-dev",
                 "symfony/yaml": ">=2.1,<2.3-dev"
             },
-            "time": "1352822853",
+            "time": "2012-11-13 16:07:33",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.0.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Nelmio\\ApiDocBundle": ""
@@ -1383,6 +1405,53 @@
             ]
         },
         {
+            "name": "raven/raven",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/getsentry/raven-php.git",
+                "reference": "c335f484ec2ff6e4d391cb950959b7cd32b5d343"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/getsentry/raven-php/archive/c335f484ec2ff6e4d391cb950959b7cd32b5d343.zip",
+                "reference": "c335f484ec2ff6e4d391cb950959b7cd32b5d343",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "time": "2013-01-04 19:46:38",
+            "bin": [
+                "bin/raven"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Raven_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache License 2"
+            ],
+            "authors": [
+                {
+                    "name": "David Cramer",
+                    "email": "dcramer@gmail.com"
+                }
+            ],
+            "description": "A PHP client for Sentry (http://getsentry.com)",
+            "homepage": "http://getsentry.com",
+            "keywords": [
+                "log",
+                "logging"
+            ]
+        },
+        {
             "name": "sensio/distribution-bundle",
             "version": "2.1.x-dev",
             "target-dir": "Sensio/Bundle/DistributionBundle",
@@ -1406,7 +1475,6 @@
                     "dev-master": "2.1.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Sensio\\Bundle\\DistributionBundle": ""
@@ -1426,7 +1494,7 @@
                 "distribution",
                 "configuration"
             ],
-            "time": "1347340208"
+            "time": "2012-09-11 05:10:08"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -1453,7 +1521,6 @@
                     "dev-master": "2.1.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Sensio\\Bundle\\FrameworkExtraBundle": ""
@@ -1473,7 +1540,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "1348064274"
+            "time": "2012-09-19 14:17:54"
         },
         {
             "name": "sensio/generator-bundle",
@@ -1505,7 +1572,6 @@
                     "dev-master": "2.1.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Sensio\\Bundle\\GeneratorBundle": ""
@@ -1521,7 +1587,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "1348030981"
+            "time": "2012-09-19 05:03:01"
         },
         {
             "name": "sonata-project/admin-bundle",
@@ -1560,7 +1626,6 @@
                 "sonata-project/intl-bundle": "dev-master"
             },
             "type": "symfony-bundle",
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Sonata\\AdminBundle": ""
@@ -1588,7 +1653,7 @@
                 "sonata",
                 "bootstrap"
             ],
-            "time": "1352215359"
+            "time": "2012-11-06 15:22:39"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -1617,9 +1682,8 @@
                 "sonata-project/admin-bundle": "dev-master",
                 "sonata-project/cache-bundle": "dev-master"
             },
-            "time": "1351346271",
+            "time": "2012-10-27 13:57:51",
             "type": "symfony-bundle",
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Sonata\\BlockBundle": ""
@@ -1666,9 +1730,8 @@
                 "doctrine/orm": ">=2.2,<2.4-dev",
                 "symfony/symfony": ">=2.1,<2.3-dev"
             },
-            "time": "1351436496",
+            "time": "2012-10-28 15:01:36",
             "type": "symfony-bundle",
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Sonata\\DoctrineORMAdminBundle": ""
@@ -1718,9 +1781,8 @@
             "suggest": {
                 "ext-curl": "*"
             },
-            "time": "1346967589",
+            "time": "2012-09-06 21:39:49",
             "type": "library",
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Exporter": "lib/"
@@ -1765,9 +1827,8 @@
                 "php": ">=5.3.2",
                 "symfony/framework-bundle": "2.*"
             },
-            "time": "1346283282",
+            "time": "2012-08-29 23:34:42",
             "type": "symfony-bundle",
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Sonata\\jQueryBundle": ""
@@ -1811,14 +1872,13 @@
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "1347542176",
+            "time": "2012-09-13 13:16:16",
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "4.2-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "files": [
                     "lib/swift_required.php"
@@ -1881,7 +1941,6 @@
                     "dev-master": "2.1.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Symfony\\Bundle\\AsseticBundle": ""
@@ -1904,7 +1963,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "1347626244"
+            "time": "2012-09-14 12:37:24"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -1938,7 +1997,6 @@
                     "dev-master": "2.1.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Symfony\\Bundle\\MonologBundle": ""
@@ -1959,7 +2017,7 @@
             ],
             "description": "Symfony MonologBundle",
             "homepage": "http://symfony.com",
-            "time": "1347983520"
+            "time": "2012-09-18 15:52:00"
         },
         {
             "name": "symfony/swiftmailer-bundle",
@@ -1993,7 +2051,6 @@
                     "dev-master": "2.1-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Symfony\\Bundle\\SwiftmailerBundle": ""
@@ -2014,7 +2071,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "1346243146"
+            "time": "2012-08-29 12:25:46"
         },
         {
             "name": "symfony/symfony",
@@ -2082,7 +2139,6 @@
                     "dev-master": "2.1-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Symfony": "src/",
@@ -2107,7 +2163,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "1348125180"
+            "time": "2012-09-20 07:13:00"
         },
         {
             "name": "twig/extensions",
@@ -2132,7 +2188,6 @@
                     "dev-master": "1.0.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Twig_Extensions_": "lib/"
@@ -2154,7 +2209,7 @@
                 "i18n",
                 "text"
             ],
-            "time": "1346770278"
+            "time": "2012-09-04 14:51:18"
         },
         {
             "name": "twig/twig",
@@ -2179,7 +2234,6 @@
                     "dev-master": "1.10-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Twig_": "lib/"
@@ -2203,7 +2257,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "1347961095"
+            "time": "2012-09-18 09:38:15"
         }
     ],
     "packages-dev": null,
@@ -2215,6 +2269,7 @@
         "sonata-project/admin-bundle": 20,
         "ddeboer/guzzle-bundle": 20,
         "friendsofsymfony/rest-bundle": 20,
-        "friendsofsymfony/jsrouting-bundle": 20
+        "friendsofsymfony/jsrouting-bundle": 20,
+        "kunstmaan/sentry-bundle": 20
     }
 }
