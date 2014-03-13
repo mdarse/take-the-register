@@ -3,17 +3,17 @@ Take The Register
 
 [![Build Status](https://secure.travis-ci.org/mdarse/take-the-register.png)](http://travis-ci.org/mdarse/take-the-register)
 
-Take the register is an application to manage absences in university.
+Take the register is an application to manage student presence in Cergy-Pontoise university.
 
 Features
 --------
-* Synchronization with Google calendar
-* Automatic matching with professors
-* Event blacklisting to get only lessons
+* Synchronization with Google Agenda
+* Automatic matching between event names and professors
+* Event blacklisting to filter out lessons
 
 Installation
 ------------
-Take The Regiser uses [Composer][2] to manage its dependencies.
+Take The Regiser uses [Composer][2] to manage dependencies.
 
 If you don't have Composer yet, download it following instructions on http://getcomposer.org/ or just run the following command:
 
@@ -49,7 +49,7 @@ It will setup cache files an all that stuff automatically.
 
 Installing the database
 -----------------------
-This application is using MySQL to save an organize manipulated data.
+This application is using MySQL as storage backend.
 
 Create the database:
 
@@ -66,7 +66,7 @@ This is magic :-)
 Creating the first user
 -----------------------
 
-In order to interact with the application, your need a user account which will be used to sign in. There is a command for that.
+In order to interact with the application, your need an initial user account to sign in. There is a command for that.
 
 	php app/console fos:user:create <username> <email> --super-admin
 	
@@ -76,8 +76,8 @@ Later, to add admin rights on an existing account you will just have to do that:
 
 	php app/console fos:user:promote <username> ROLE_ADMIN
 
-Google calendar sync
---------------------
+Google Agenda syncronization
+----------------------------
 Take The Register is capable of extracting the university planning on a Google calendar, and turn it into lessons directly in the app.
 
 To setup this, you need a Google account which has at least read access to the targeted calendar.
@@ -100,7 +100,7 @@ Also, the application ignore event ending with `?`or `(???)`
 _In a future version, you will be able to set custom expressions to filter or associate events._
 
 
-	
+
 
 [2]:  http://getcomposer.org/
 [3]:  http://symfony.com/doc/current/book/installation.html#configuration-and-setup
