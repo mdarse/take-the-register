@@ -25,7 +25,7 @@ Then use the `install` command to download dependencies:
 
 	php composer.phar install
 
-Checking your System Coonfiguration
+Checking your System Configuration
 -----------------------------------
 Execture the `check.php`script from the command line:
 
